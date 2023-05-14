@@ -9,7 +9,10 @@ import { environment } from 'src/environments/environment';
     selector: 'app-find-mates',
     templateUrl: './find-mates.page.html',
     standalone: true,
-    styles: [`capacitor-google-map { display: inline-block; width: 100%; height: 100%; }`],
+    styles: [`
+        ion-content { --background: transparent; }
+        capacitor-google-map { display: inline-block; width: 100%; height: 100%; }`
+    ],
     imports: [IonicModule, CommonModule, FormsModule],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
