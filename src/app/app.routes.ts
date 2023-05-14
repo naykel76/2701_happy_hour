@@ -5,8 +5,7 @@ export const routes: Routes = [
 
     {
         path: '',
-        // redirectTo: '/splash',
-        redirectTo: '/dev',
+        redirectTo: '/tabs/home',
         pathMatch: 'full',
     },
     // {
@@ -55,6 +54,5 @@ export const routes: Routes = [
     //     path: 'dev',
     //     loadComponent: () => import('./dev.page').then( m => m.DevPage)
     //   },
-
 
 ];
