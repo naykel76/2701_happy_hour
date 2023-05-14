@@ -14,24 +14,26 @@ ionic capacitor run android -l --external
 ```
 
 
-#### Sync (copy + update) an Ionic project
+
+## Splash Screens and Icons
+
+https://capacitorjs.com/docs/apis/splash-screen
 
 ```bash
+# install packages
+npm install @capacitor/assets --save-dev
+npm install @capacitor/splash-screen
+# generate assets from resource dir
+npx capacitor-assets generate --android
+# (copy + update) an Ionic project
 ionic capacitor sync android
 ```
+
+
 
 
 ```bash
 npm install @capacitor/geolocation
 npm install @capacitor/google-maps
-npx cap sync
-```
-
-## Splash Screens and Icons
-
-```bash
-npm install @capacitor/assets --save-dev
-npx capacitor-assets generate --android
-npm install @capacitor/splash-screen
 npx cap sync
 ```
