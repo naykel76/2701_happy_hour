@@ -1,0 +1,7 @@
+{
+  "name": "2701_happy_hour",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
