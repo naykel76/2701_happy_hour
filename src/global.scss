@@ -1,13 +1,17 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
+@use "node_modules/nk_jtb/scss/base/vars_base" as *;
+@use "node_modules/nk_jtb/scss/base/vars_components" as *;
+
+@use "node_modules/nk_jtb/scss/components/box";
+
+@use "node_modules/nk_jtb/scss/utilities/display_visibility";
+@use "node_modules/nk_jtb/scss/utilities/flex";
+@use "node_modules/nk_jtb/scss/utilities/general";
+@use "node_modules/nk_jtb/scss/utilities/grid";
+@use "node_modules/nk_jtb/scss/utilities/position";
+@use "node_modules/nk_jtb/scss/utilities/sizes";
+@use "node_modules/nk_jtb/scss/utilities/spacing";
+@use "node_modules/nk_jtb/scss/utilities/text";
+@use "node_modules/nk_jtb/scss/utilities/themes";
 
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";

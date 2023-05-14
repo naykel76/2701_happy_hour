@@ -1,0 +1,49 @@
+<ion-content [fullscreen]="true">
+    <!-- <div (click)="checkIn(1)" class="tac my-2">
+        <svg class="icon wh-5 blue round pxy-05 cursor-pointer">
+            <use xlink:href="/assets/svg/ui-sprite.svg#location-pin"></use>
+        </svg>
+        <h2>Check In</h2>
+    </div> -->
+    <ion-card [routerLink]="['/tabs/find-mates']">
+        <div class="flex va-c pxy-1">
+            <svg class="icon wh-4 mr-2">
+                <use xlink:href="/assets/svg/ui-sprite.svg#cheers"></use>
+            </svg>
+            <div>
+                <h4 class="my-0">Find Mates</h4>
+                <p class="my-0">You have 18 mates checked in</p>
+            </div>
+        </div>
+    </ion-card>
+    <ion-card [routerLink]="['/tabs/my-beers']">
+        <div class="flex va-c pxy-1">
+            <svg class="icon wh-4 mr-2">
+                <use xlink:href="/assets/svg/ui-sprite.svg#beer"></use>
+            </svg>
+            <div>
+                <h4 class="my-0">My Beers</h4>
+                <p class="my-0">Track beer prices</p>
+            </div>
+        </div>
+    </ion-card>
+    <ion-card [routerLink]="['/tabs/profile']">
+        <div class="flex va-c pxy-1">
+            <svg class="icon wh-4 mr-2">
+                <use xlink:href="/assets/svg/ui-sprite.svg#drinker"></use>
+            </svg>
+            <div>
+                <h4 class="my-0">Profile and Preferences</h4>
+            </div>
+        </div>
+    </ion-card>
+    <ion-card [routerLink]="['/']">
+        <div class="flex va-c pxy-1">
+
+            <div>
+                <h4 class="my-0">Splash</h4>
+                <p class="my-05 txt-red">Temporary link for development purpose, and will be removed in production release.</p>
+            </div>
+        </div>
+    </ion-card>
+</ion-content>
