@@ -16,7 +16,7 @@
             </div>
         </div>
     </ion-card>
-    <ion-card [routerLink]="['/tabs/my-beers']">
+    <ion-card [routerLink]="['/tabs/favourite-beers']">
         <div class="flex va-c pxy-1">
             <svg class="icon wh-4 mr-2">
                 <use xlink:href="/assets/svg/ui-sprite.svg#beer"></use>
@@ -27,6 +27,16 @@
             </div>
         </div>
     </ion-card>
+    <ion-card [routerLink]="['/tabs/venue-list']">
+        <div class="flex va-c pxy-1">
+            <svg class="icon wh-4 mr-2">
+                <use xlink:href="/assets/svg/ui-sprite.svg#venue"></use>
+            </svg>
+            <div>
+                <h4 class="my-0">Venues</h4>
+            </div>
+        </div>
+    </ion-card>
     <ion-card [routerLink]="['/tabs/profile']">
         <div class="flex va-c pxy-1">
             <svg class="icon wh-4 mr-2">
@@ -34,15 +44,6 @@
             </svg>
             <div>
                 <h4 class="my-0">Profile and Preferences</h4>
-            </div>
-        </div>
-    </ion-card>
-    <ion-card [routerLink]="['/']">
-        <div class="flex va-c pxy-1">
-
-            <div>
-                <h4 class="my-0">Splash</h4>
-                <p class="my-05 txt-red">Temporary link for development purpose, and will be removed in production release.</p>
             </div>
         </div>
     </ion-card>

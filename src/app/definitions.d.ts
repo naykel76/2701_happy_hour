@@ -31,6 +31,7 @@ export interface Venue {
 export interface User {
     name: string;
     email: string;
+    password: string;
     birthday: any;
     phone: any;
     avatar: string;

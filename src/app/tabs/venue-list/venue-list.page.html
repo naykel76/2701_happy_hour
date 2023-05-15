@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Venue List</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-list *ngFor="let venue of venues">
+        <ion-item button>
+            <ion-label>
+                <h3>{{venue.name}}</h3>
+                <p>{{venue.address}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

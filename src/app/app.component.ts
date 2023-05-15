@@ -2,6 +2,7 @@ import { Component, EnvironmentInjector, inject } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { SplashScreen } from '@capacitor/splash-screen';
+import { UserService } from './services/user.service';
 
 @Component({
     selector: 'app-root',
@@ -13,25 +14,24 @@ import { SplashScreen } from '@capacitor/splash-screen';
 export class AppComponent {
     public environmentInjector = inject(EnvironmentInjector);
 
-    constructor() { }
+    constructor(private userService: UserService) { }
 
-    ngOnInit() {
-        this.initializeApp();
+    async ngOnInit() {
+        await this.userService.setUser();
     }
 
-    async initializeApp() {
-        // // Hide the splash (you should do this on app launch)
-        // await SplashScreen.hide();
 
-        // // Show the splash for an indefinite amount of time:
-        // await SplashScreen.show({
-        //     autoHide: false,
-        // });
+    // // Hide the splash (you should do this on app launch)
+    // await SplashScreen.hide();
 
-        // // Show the splash for two seconds and then automatically hide it:
-        // await SplashScreen.show({
-        //     showDuration: 2000,
-        //     autoHide: true,
-        // });
-    }
+    // // Show the splash for an indefinite amount of time:
+    // await SplashScreen.show({
+    //     autoHide: false,
+    // });
+
+    // // Show the splash for two seconds and then automatically hide it:
+    // await SplashScreen.show({
+    //     showDuration: 2000,
+    //     autoHide: true,
+    // });
 }
