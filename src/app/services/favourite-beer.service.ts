@@ -9,6 +9,7 @@ export class FavouriteBeerService {
 
     constructor() { }
 
+    // this means I can change the data source and nothing should break!
     getFavouriteBeers(): FavouriteBeer[] {
         return FAVOURITE_BEERS;
     }
