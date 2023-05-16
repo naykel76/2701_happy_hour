@@ -1,4 +1,4 @@
-import { FavouriteBeer } from "../definitions"
+import { FavouriteBeer } from "../app/definitions"
 
 export const FAVOURITE_BEERS: FavouriteBeer[] = [
     {

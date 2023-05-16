@@ -1,4 +1,4 @@
-import { Venue } from "../definitions";
+import { Venue } from "../app/definitions";
 
 export const VENUES: Venue[] = [
     {

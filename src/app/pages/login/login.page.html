@@ -1,0 +1,19 @@
+<ion-content [fullscreen]="true">
+    <div class="flex h-screen ha-c va-c">
+        <ion-card class="flex-1 maxw-400">
+            <ion-list class="ion-padding">
+                <ion-item>
+                    <ion-input [(ngModel)]="email" name="email" type="text" label="E-mail" labelPlacement="floating" />
+                </ion-item>
+                <ion-item>
+                    <ion-input [(ngModel)]="password" type="password" label="Password" labelPlacement="floating" />
+                </ion-item>
+                <div class="mt">
+                    <ion-button (click)="login()" color="primary" expand="full"> Login </ion-button>
+                    <ion-button (click)="resetPassword()" fill="clear" expand="full"> Forgot Password? </ion-button>
+                    <div class="txt-red tac">{{message}}</div>
+                </div>
+            </ion-list>
+        </ion-card>
+    </div>
+</ion-content>

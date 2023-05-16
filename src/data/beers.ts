@@ -1,4 +1,4 @@
-import { Beer } from "../definitions";
+import { Beer } from "../app/definitions";
 
 export const BEERS: Beer[] = [
     { id: 701, name: 'Carlton Dry', image: 'carlton-dry.jpg' },

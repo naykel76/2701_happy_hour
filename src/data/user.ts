@@ -1,4 +1,4 @@
-import { User } from "../definitions";
+import { User } from "../app/definitions";
 
 export const USER: User = {
     name: 'Billy McDoogle',

@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-button (click)="cancel()"> Cancel </ion-button>
+        </ion-buttons>
+        <ion-title class="tac">Edit Profile</ion-title>
+        <ion-buttons slot="end">
+            <ion-button id="open-toast" (click)="save()"> Save </ion-button>
+        </ion-buttons>
+        <ion-toast trigger="open-toast" color="success" position="bottom" message="Profile Saved" [duration]="2000"></ion-toast>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+
+    <div class="tac relative">
+        <img src="assets/avatar.png" alt="profile picture">
+        <div class="absolute pos-r pos-t">
+            <ion-button id="open-action-sheet" shape="round" fill="clear" size="large">
+                <ion-icon color="secondary" src="/assets/svg/camera.svg" class="wh-3"></ion-icon>
+            </ion-button>
+        </div>
+        <ion-action-sheet trigger="open-action-sheet" [buttons]="actionSheetButtons"></ion-action-sheet>
+    </div>
+
+    <ion-list class="mt">
+        <ion-item>
+            <ion-input [(ngModel)]="user.name" label="Name"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input [(ngModel)]="user.email" type="email" label="Email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input [(ngModel)]="user.phone" type="phone" label="Phone" type="tel"></ion-input>
+        </ion-item>
+
+        <ion-item id="open-date-popover">
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
+            <ion-label>Birthday</ion-label>
+            <ion-text slot="end">{{user.birthday}}</ion-text>
+        </ion-item>
+        <!-- value is passed using the template reference '#bday' because date
+        time is a pain in the butt and there is no useful documentation! -->
+        <!-- NK::TD This will throw an error on the second time a date is
+        selected. This bug will need to be fixed for final release -->
+        <ion-popover trigger="open-date-popover" size="cover">
+            <ng-template>
+                <ion-datetime #bday presentation="date" (ionChange)="setBirthday(bday.value)"
+                    [preferWheel]="true" [showDefaultButtons]="true" size="cover"></ion-datetime>
+            </ng-template>
+        </ion-popover>
+    </ion-list>
+
+</ion-content>

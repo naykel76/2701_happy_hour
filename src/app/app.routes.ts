@@ -6,17 +6,18 @@ export const routes: Routes = [
     {
         path: '',
         // redirectTo: '/dev',
-        redirectTo: '/tabs/home',
+        // redirectTo: '/tabs/home',
+        redirectTo: '/start',
         pathMatch: 'full',
     },
-    // {
-    //     path: 'login',
-    //     loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage)
-    // },
-    // {
-    //     path: 'splash',
-    //     loadComponent: () => import('./pages/splash/splash.page').then(m => m.SplashPage)
-    // },
+    {
+        path: 'login',
+        loadComponent: () => import('./pages/login/login.page').then(m => m.LoginPage)
+    },
+    {
+        path: 'start',
+        loadComponent: () => import('./pages/start/start.page').then(m => m.StartPage)
+    },
     {
         path: 'tabs',
         component: TabsPage,

@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="cancel()">
+                <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="tar">Check-In Activity</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div class="grid cols-3 tac gg-05 pxy-05">
+        <ion-button color="dark" (click)="filterByWeek()">
+            Week
+        </ion-button>
+        <ion-button color="dark" (click)="filterByMonth()">
+            Month
+        </ion-button>
+        <ion-button color="dark" (click)="filterByYear()">
+            Year
+        </ion-button>
+    </div>
+
+    <img src="/assets/images/chart.jpg" alt="sample chart">
+
+</ion-content>
