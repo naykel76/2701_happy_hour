@@ -6,7 +6,6 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class StorageService {
 
-    // These functions are not commented because they should be obvious
     constructor(private storage: Storage) { this.init(); }
 
     async init() {
@@ -22,11 +21,11 @@ export class StorageService {
     }
 
     public async remove(key: string) {
-        let value = await this.storage?.remove(key);
+        await this.storage?.remove(key);
     }
 
     public async clear() {
-        let value = await this.storage?.clear();
+        await this.storage?.clear();
     }
 
     public async keys() {

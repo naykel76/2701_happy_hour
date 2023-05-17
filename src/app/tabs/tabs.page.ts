@@ -20,13 +20,8 @@ export class TabsPage {
      * hide the toolbar on the home page
      */
     showHideToolbar() {
-
-        // alert(this.router.url === '/tabs/home')
-        this.showTabs = this.router.url === '/tabs/home' ? false : true;
-        // if (this.router.url === '/tabs/home') {
-        //     this.showTabs = false;
-        // } else {
-        //     this.showTabs = true;
-        // }
+        this.showTabs = this.router.url === '/home' ? false : true;
     }
+
+
 }

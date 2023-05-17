@@ -1,5 +1,7 @@
 <ion-content [fullscreen]="true">
+
     <div class="flex-col h-screen ha-c va-c">
+
         <ion-card class="w-full maxw-400">
             <ion-list class="ion-padding">
                 <ion-item>
@@ -12,14 +14,13 @@
                     <ion-button (click)="login()" color="primary" expand="full"> Login </ion-button>
                     <ion-button (click)="resetPassword()" fill="clear" expand="full"> Forgot Password? </ion-button>
                     <div class="txt-red tac">{{message}}</div>
+                    <ion-button *ngIf="env.testing" (click)="quickSet()" fill="clear" color="warning" expand="full"> Quick Set </ion-button>
                 </div>
             </ion-list>
         </ion-card>
-        <ion-card color="dark" *ngIf="env.testing" class="w-full maxw-400">
-            <ion-card-content>
-                <ion-button (click)="quickSet()" fill="clear" color="warning" expand="full"> Quick Set </ion-button>
-                <ion-button (click)="quickSet()" fill="clear" color="warning" expand="full"> Reset Storage </ion-button>
-            </ion-card-content>
-        </ion-card>
+
+        <nk-testing />
+
     </div>
+
 </ion-content>

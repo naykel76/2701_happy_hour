@@ -4,12 +4,12 @@ import { IonicModule } from '@ionic/angular';
 import { VENUES } from 'src/data/venues';
 
 @Component({
-    selector: 'app-venue-list',
-    templateUrl: './venue-list.page.html',
+    selector: 'app-venues',
+    templateUrl: './venues.page.html',
     standalone: true,
     imports: [IonicModule, CommonModule]
 })
-export class VenueListPage implements OnInit {
+export class VenuesPage implements OnInit {
 
     venues = VENUES;
 

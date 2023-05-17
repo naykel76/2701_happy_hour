@@ -8,15 +8,6 @@ import { USER } from '../../data/user';
 })
 export class UserService {
 
-    otherUser: User = {
-        name: 'Sam',
-        email: 'sam@gmail.com',
-        password: '67123',
-        birthday: '23/09/1996',
-        phone: '0404 0505 0909',
-        avatar: 'avatar.png'
-    };
-
     user: User;
 
     constructor(private storageService: StorageService) {
@@ -31,32 +22,21 @@ export class UserService {
      * set the user details to storage
      */
     async setUser() {
-
-        const user = (await this.storageService.get('user')) || this.user;
-        // only set when not exists
-        // const user = (await this.storageService.get('user')) || this.user;
-        console.log(user);
+        await this.storageService.set('user', this.user);
     }
 
     /**
      * set the password from storage
      */
-    async setPassword(password: any = '12345') {
+    async setPassword(password: any) {
         await this.storageService.set('user.password', password);
     }
 
     /**
-     * get the password from storage
+     * get super secure authentication credentials from storage
      */
-    async getPassword(): Promise<string> {
+    async getCredentials(): Promise<{ email: string, password: string }> {
         const user = await this.storageService.get('user');
-        return user?.password || '';
-    }
-
-    /**
-     *
-     */
-    authenticated():boolean {
-        return true;
+        return { email: user?.email, password: user?.password };
     }
 }

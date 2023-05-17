@@ -6,8 +6,6 @@ export const routes: Routes = [
 
     {
         path: '',
-        // redirectTo: '/dev',
-        // redirectTo: '/tabs/home',
         redirectTo: '/start',
         pathMatch: 'full',
     },
@@ -20,12 +18,12 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/start/start.page').then(m => m.StartPage)
     },
     {
-        path: 'tabs',
+        path: '',
         component: TabsPage,
+        canActivate: [AuthGuard],
         children: [
             {
                 path: 'home',
-                canActivate: [AuthGuard],
                 loadComponent: () =>
                     import('./tabs/home/home.page').then((m) => m.HomePage,),
             },
@@ -38,14 +36,10 @@ export const routes: Routes = [
                 loadComponent: () => import('./tabs/favourite-beers/favourite-beers.page').then(m => m.FavouriteBeersPage)
             },
             {
-                path: 'venue-list',
+                path: 'venues',
                 loadComponent: () =>
-                    import('./tabs/venue-list/venue-list.page').then((m) => m.VenueListPage),
+                    import('./tabs/venues/venues.page').then((m) => m.VenuesPage),
             },
-            // {
-            //     path: 'profile',
-            //     loadComponent: () => import('./tabs/profile/profile.page').then(m => m.ProfilePage)
-            // },
             {
                 path: '',
                 redirectTo: '/tabs/home',
@@ -60,9 +54,5 @@ export const routes: Routes = [
 
 
 
-    //   {
-    //     path: 'dev',
-    //     loadComponent: () => import('./dev.page').then( m => m.DevPage)
-    //   },
 
 ];

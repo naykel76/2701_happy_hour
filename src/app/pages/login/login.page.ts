@@ -6,54 +6,42 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { environment } from 'src/environments/environment';
-import { User } from 'src/app/definitions';
+import { TestingComponent } from 'src/app/components/testing/testing';
 
 @Component({
     selector: 'app-login',
     templateUrl: './login.page.html',
     standalone: true,
-    imports: [IonicModule, CommonModule, FormsModule]
+    imports: [IonicModule, CommonModule, FormsModule, TestingComponent]
 })
 export class LoginPage implements OnInit {
 
-    authenticated: boolean = false;
     email: string;
     password: string;
     message: any;
     env = environment;
-    user: any;
 
     constructor(private router: Router, private storageService: StorageService, private userService: UserService) { }
 
-    ngOnInit() {
-        // this.user = ;
-
-        // alert(this.userService.authenticated())
-    }
-
+    ngOnInit() { }
 
     /**
      * Authenticate user and redirect to home page
      */
     async login(): Promise<void> {
-        const password = await this.userService.getPassword();
-        this.router.navigate(['/tabs/home'])
 
-        // if (password === this.password) {
-        //     this.router.navigate(['/tabs/home'])
-        // } else {
-        //     this.message = 'The email or password is incorrect.'
-        // }
-    }
+        const auth = await this.userService.getCredentials();
 
-    authenticate() {
-
-        this.authenticated = true
+        if (auth.password === this.password && auth.email === this.email) {
+            this.storageService.set('loggedIn', true);
+            this.router.navigate(['/home'])
+        } else {
+            this.message = 'The email or password is incorrect.'
+        }
     }
 
     /**
      * Reset the users password
-     * NK?? Does ionic or angular have API to manage this?
      */
     resetPassword(): void {
         // this.userService.set('user.password', '12345');
@@ -63,9 +51,13 @@ export class LoginPage implements OnInit {
     /**
      * quickly set the email and password for development and testing
      */
-    quickSet() {
+    async quickSet() {
         this.email = 'billy_mac@gmail.com';
         this.password = '12345';
+    }
+
+    async setDefaultUser() {
+        await this.userService.setUser();
     }
 
 }

@@ -17,7 +17,7 @@ export class AppComponent {
     constructor(private userService: UserService) { }
 
     async ngOnInit() {
-        await this.userService.setUser();
+
     }
 
 
