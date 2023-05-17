@@ -10,20 +10,21 @@
 </ion-header>
 
 <ion-content>
-    <ion-list #beer>
-        <ion-item-sliding *ngFor="let favB of favBeerList;">
+    <ion-list #beer class="py-0">
+        <ion-item-sliding *ngFor="let favB of favBeers;">
             <!-- <ion-item (click)="displayBeer(item)"> -->
-            <ion-item >
+            <ion-item>
                 <ion-thumbnail slot="start" class="mr-0">
                     <img alt="{{favB.beer.name}}" src="assets/images/{{favB.beer.image}}" style="width: auto; max-height: 100%;" />
                 </ion-thumbnail>
                 <ion-label>
                     {{favB.beer.name}}
                     <div class="txt-muted">Venue Cheapest Name - $8.00 <span class="txt-red">Make Dynamic</span></div>
+                    <div *ngIf="env.testing"><small>fbid: {{favB.id}}</small> &nbsp; <small>bid: {{favB.beer.id}}</small></div>
                 </ion-label>
             </ion-item>
             <ion-item-options>
-                <ion-item-option (click)="delete(favB.beer.id)" color="danger">
+                <ion-item-option (click)="delete(favB.id)" color="danger">
                     <ion-icon slot="icon-only" name="trash"></ion-icon>
                 </ion-item-option>
             </ion-item-options>
