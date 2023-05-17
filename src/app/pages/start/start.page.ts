@@ -5,16 +5,26 @@ import { IonicModule } from '@ionic/angular';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-start',
-  templateUrl: './start.page.html',
-  styleUrls: ['./start.page.scss'],
-  standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterLink]
+    selector: 'app-start',
+    templateUrl: './start.page.html',
+    styleUrls: ['./start.page.scss'],
+    standalone: true,
+    imports: [IonicModule, CommonModule, FormsModule, RouterLink]
 })
 export class StartPage implements OnInit {
 
-  constructor() { }
+    constructor() { }
 
-  ngOnInit() { }
+    ngOnInit() { }
+
+    // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    //     if (this.isLoggedIn) {
+    //         return true;
+    //     } else {
+    //         alert('Please log in')
+    //         this.router.navigate(['']);
+    //         return false;
+    //     }
+    //     }
 
 }

@@ -1,33 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { IonModal } from '@ionic/angular';
+import { OverlayEventDetail } from '@ionic/core/components';
 import { StorageService } from './services/storage.service';
-import { User } from './definitions';
 
 @Component({
     selector: 'app-dev',
     templateUrl: './dev.page.html',
     standalone: true,
-    imports: [IonicModule, CommonModule, FormsModule]
+    imports: [IonicModule, CommonModule]
 })
-export class DevPage implements OnInit {
+export class DevPage {
 
-    user: User = {
-        name: '',
-        email: '',
-        password: '',
-        birthday: '',
-        phone: '',
-        avatar: '',
-    };
+    @ViewChild(IonModal) modal: IonModal;
+
+    message = 'This modal example uses triggers to automatically open a modal when the button is clicked.';
+    name: string;
+
+    storage: any;
 
     constructor(private storageService: StorageService) { }
 
-    async ngOnInit() {
-        this.user = await this.storageService.get('user');
-        console.log(this.user);
+    cancel() {
+        this.modal.dismiss(null, 'cancel');
     }
 
+    confirm() {
+        this.modal.dismiss(this.name, 'confirm');
+    }
+
+    onWillDismiss(event: Event) {
+        const ev = event as CustomEvent<OverlayEventDetail<string>>;
+        if (ev.detail.role === 'confirm') {
+            this.message = `Hello, ${ev.detail.data}!`;
+        }
+    }
+
+
+    clearStorage() {
+        this.storageService.clear();
+    }
 
 }

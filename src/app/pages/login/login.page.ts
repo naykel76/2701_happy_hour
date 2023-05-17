@@ -4,6 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { environment } from 'src/environments/environment';
+import { User } from 'src/app/definitions';
 
 @Component({
     selector: 'app-login',
@@ -13,31 +16,39 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginPage implements OnInit {
 
-
-    // email: string = 'billy_mac@gmail.com';
-    // password: string = 'wrong';
-
+    authenticated: boolean = false;
     email: string;
     password: string;
-
-    test: any;
     message: any;
+    env = environment;
+    user: any;
 
-    constructor(private router: Router, private userService: UserService) { }
+    constructor(private router: Router, private storageService: StorageService, private userService: UserService) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        // this.user = ;
+
+        // alert(this.userService.authenticated())
+    }
+
 
     /**
      * Authenticate user and redirect to home page
      */
     async login(): Promise<void> {
         const password = await this.userService.getPassword();
+        this.router.navigate(['/tabs/home'])
 
-        if (password === this.password) {
-            this.router.navigate(['/tabs/home'])
-        } else {
-            this.message = 'The email or password is incorrect.'
-        }
+        // if (password === this.password) {
+        //     this.router.navigate(['/tabs/home'])
+        // } else {
+        //     this.message = 'The email or password is incorrect.'
+        // }
+    }
+
+    authenticate() {
+
+        this.authenticated = true
     }
 
     /**
@@ -45,7 +56,16 @@ export class LoginPage implements OnInit {
      * NK?? Does ionic or angular have API to manage this?
      */
     resetPassword(): void {
-        alert('reset password');
+        // this.userService.set('user.password', '12345');
+        alert('password has been reset to 12345');
+    }
+
+    /**
+     * quickly set the email and password for development and testing
+     */
+    quickSet() {
+        this.email = 'billy_mac@gmail.com';
+        this.password = '12345';
     }
 
 }

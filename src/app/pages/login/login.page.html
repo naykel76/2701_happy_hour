@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
-    <div class="flex h-screen ha-c va-c">
-        <ion-card class="flex-1 maxw-400">
+    <div class="flex-col h-screen ha-c va-c">
+        <ion-card class="w-full maxw-400">
             <ion-list class="ion-padding">
                 <ion-item>
                     <ion-input [(ngModel)]="email" name="email" type="text" label="E-mail" labelPlacement="floating" />
@@ -14,6 +14,12 @@
                     <div class="txt-red tac">{{message}}</div>
                 </div>
             </ion-list>
+        </ion-card>
+        <ion-card color="dark" *ngIf="env.testing" class="w-full maxw-400">
+            <ion-card-content>
+                <ion-button (click)="quickSet()" fill="clear" color="warning" expand="full"> Quick Set </ion-button>
+                <ion-button (click)="quickSet()" fill="clear" color="warning" expand="full"> Reset Storage </ion-button>
+            </ion-card-content>
         </ion-card>
     </div>
 </ion-content>

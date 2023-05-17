@@ -1,16 +1,44 @@
-<ion-header [translucent]="true">
-    <ion-toolbar>
-        <ion-title>dev</ion-title>
-    </ion-toolbar>
-</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
 
-<ion-content [fullscreen]="true">
+    {{storage}}
+    <div class="pxy-1">
+        <ion-button (click)="clearStorage()">Clear Storage</ion-button>
+    </div>
+
     <ion-card>
-        {{user.name}} <br>
-        {{user.email}} <br>
-        {{user.password}} <br>
-        {{user.birthday}} <br>
-        {{user.phone}} <br>
-        {{user.avatar}} <br>
+        <ion-card-header>
+            <ion-card-title>Change Password</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+            <p class="txt-red">This feature is for demonstration purpose only. Password will be saved direct to storage.</p>
+            <ion-input type="password" labelPlacement="floating" label="New Password" />
+        </ion-card-content>
+
+
+        <div class="flex space-between">
+            <ion-button fill="clear">Save</ion-button>
+            <ion-button fill="clear">Cancel</ion-button>
+        </div>
     </ion-card>
+
+
+    <ion-button id="open-modal">Open Modal</ion-button>
+
+    <ion-modal trigger="open-modal" (willDismiss)="onWillDismiss($event)">
+
+        <ng-template>
+
+            <ion-card class="ion-padding">
+
+                <ion-footer class="grid-0 cols-2">
+                    <ion-button slot="end" (click)="cancel()" fill="outline">Cancel</ion-button>
+                    <ion-button slot="end" (click)="confirm()" [strong]="true">Confirm</ion-button>
+                </ion-footer>
+            </ion-card>
+
+        </ng-template>
+
+    </ion-modal>
+
 </ion-content>

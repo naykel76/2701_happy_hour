@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs/tabs.page';
+import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
 
@@ -24,8 +25,9 @@ export const routes: Routes = [
         children: [
             {
                 path: 'home',
+                canActivate: [AuthGuard],
                 loadComponent: () =>
-                    import('./tabs/home/home.page').then((m) => m.HomePage),
+                    import('./tabs/home/home.page').then((m) => m.HomePage,),
             },
             {
                 path: 'find-mates',
