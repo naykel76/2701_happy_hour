@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
@@ -13,7 +13,7 @@ import { User } from 'src/app/definitions';
             <ion-card-content>
                 <ion-button (click)="setDefaultUser()" fill="clear" color="warning" expand="full"> Set Default User Data </ion-button>
                 <ion-button (click)="clearStorage()" fill="clear" color="warning" expand="full"> Clear Storage </ion-button>
-                <small><pre>{{ user | json }}</pre></small>
+                <small><pre>{{ data | json }}</pre></small>
             </ion-card-content>
         </ion-card>
     `,
@@ -22,13 +22,16 @@ import { User } from 'src/app/definitions';
 })
 export class TestingComponent implements OnInit {
 
+    @Input() storageKey?: string;
+
     env = environment;
-    user: User;
+    data: any;
 
     constructor(private storageService: StorageService, private userService: UserService) { }
 
     async ngOnInit() {
         this.refresh()
+        console.log(this.storageKey);
     }
 
     clearStorage() {
@@ -42,7 +45,7 @@ export class TestingComponent implements OnInit {
     }
 
     private async refresh() {
-        this.user = await this.storageService.get('user');
+        this.data = await this.storageService.get(this.storageKey);
     }
 
 }
