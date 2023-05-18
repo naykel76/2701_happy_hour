@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+        </ion-buttons>
+        <ion-title class="tac">
+            <h2>{{editing ? editingItem.beer.name : 'Add Beer'}}</h2>
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="save()" [strong]="true">Confirm</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="editing; then editingBlock else newItemBlock"></div>
+
+    <ng-template #editingBlock>
+        <ion-item>
+            <ion-img src="assets/images/{{editingItem.beer.image}}" alt="{{editingItem.beer.name}}" class="mx-auto py-1"></ion-img>
+        </ion-item>
+        <!-- <nk-beer-venues beerVenues="{{beer.venues}}" /> -->
+        <h1>Venues Go Here!</h1>
+    </ng-template>
+
+    <ng-template #newItemBlock>
+
+        <ion-item>
+            <ion-select interface="action-sheet" label="Select Beer" label-placement="stacked" (ionChange)="onSelectChange($event)">
+                <ion-select-option *ngFor="let beer of beers;" [value]="beer">
+                    <ion-item>{{beer.name}}</ion-item>
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <!-- display beer details and venue options when item is selected  -->
+        <div *ngIf="editingItem == undefined; then pleaseSelectBlock else itemSelectedBlock"></div>
+
+        <ng-template #pleaseSelectBlock>
+            <ion-card>
+                <ion-card-title class="pxy-1 tac primary">Select a beer from the list</ion-card-title>
+            </ion-card>
+        </ng-template>
+
+        <ng-template #itemSelectedBlock>
+            <ion-item>
+                <ion-img src="assets/images/{{editingItem.beer.image}}" alt="{{editingItem.beer.name}}" class="mx-auto py-1"></ion-img>
+            </ion-item>
+        </ng-template>
+
+    </ng-template>
+</ion-content>

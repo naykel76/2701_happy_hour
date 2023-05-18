@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FAVOURITE_BEERS } from '../../data/favourite_beers';
+import { FAVOURITE_BEERS } from '../data';
 import { FavouriteBeer } from '../definitions';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { StorageService } from './storage.service';
@@ -14,9 +14,7 @@ export class FavouriteBeerService {
 
     constructor(private storageService: StorageService) { this.init() }
 
-    init() {
-        this.loadFavouriteBeersFromStorage()
-    }
+    init() { this.loadFavouriteBeersFromStorage() }
 
     /**
      * Load and update favorite beers from storage.
@@ -25,7 +23,7 @@ export class FavouriteBeerService {
         // Retrieve favorite beers from storage, or use default data if not found
         this.favouriteBeers = await this.storageService.get('favouriteBeers') || FAVOURITE_BEERS;
         // Notify subscribers about the updated favorite beers
-        this.updateFavouriteBeers();
+        this.updateFavouriteBeersFromStorage();
     }
 
     /**
@@ -43,7 +41,7 @@ export class FavouriteBeerService {
         const index = this.favouriteBeers.findIndex(beer => beer.id === fbid);
         if (index !== -1) {
             this.favouriteBeers.splice(index, 1);
-            this.updateFavouriteBeers();
+            this.updateFavouriteBeersFromStorage();
         }
     }
 
@@ -51,7 +49,7 @@ export class FavouriteBeerService {
      * Update favorite beers state and persist changes to storage.
      * Emits updated favorite beers to subscribers and updates storage.
      */
-    private async updateFavouriteBeers(): Promise<void> {
+    private async updateFavouriteBeersFromStorage(): Promise<void> {
         this.favouriteBeersSubject.next(this.favouriteBeers);
         await this.storageService.set('favouriteBeers', this.favouriteBeers);
     }
@@ -59,3 +57,30 @@ export class FavouriteBeerService {
 }
 
 
+
+//   async addFavouriteBeer(beer: FavouriteBeer): Promise<void> {
+//     this.favouriteBeers.push(beer);
+//     await this.updateStorage();
+//   }
+
+//   async updateFavouriteBeer(updatedBeer: FavouriteBeer): Promise<void> {
+//     const index = this.favouriteBeers.findIndex(beer => beer.id === updatedBeer.id);
+//     if (index !== -1) {
+//       this.favouriteBeers[index] = updatedBeer;
+//       await this.updateStorage();
+//     }
+//   }
+
+//   private async updateStorage(): Promise<void> {
+//     await this.storage.set(this.storageKey, this.favouriteBeers);
+//     this.fbSubject.next(this.favouriteBeers);
+//   }
+
+//   private async loadFavouriteBeersFromStorage(): Promise<void> {
+//     const storedFavouriteBeers = await this.storage.get(this.storageKey);
+//     if (storedFavouriteBeers) {
+//       this.favouriteBeers = storedFavouriteBeers;
+//       this.fbSubject.next(this.favouriteBeers);
+//     }
+//   }
+// }

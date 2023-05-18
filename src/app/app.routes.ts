@@ -6,7 +6,7 @@ export const routes: Routes = [
 
     {
         path: '',
-        redirectTo: '/start',
+        redirectTo: '/favourite-beers',
         pathMatch: 'full',
     },
     {

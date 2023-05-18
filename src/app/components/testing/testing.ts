@@ -31,7 +31,6 @@ export class TestingComponent implements OnInit {
 
     async ngOnInit() {
         this.refresh()
-        console.log(this.storageKey);
     }
 
     clearStorage() {

@@ -2,9 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController, IonPopover } from '@ionic/angular';
-import { User } from 'src/app/interface/user';
 import { format, parseISO } from 'date-fns';
-import { USER } from 'src/data/user';
+import { User } from '../definitions';
+import { USER } from '../data';
 
 @Component({
     selector: 'app-user',

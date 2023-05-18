@@ -2,18 +2,22 @@
     <ion-toolbar color="primary">
         <ion-title>My Beers</ion-title>
         <ion-buttons slot="end">
-            <!-- <ion-button id="open-modal" expand="block" (click)="addBeer()">
+            <ion-button id="open-modal" expand="block" (click)="displayEdit(null, false)">
                 <ion-icon name="add-outline"></ion-icon>
-            </ion-button> -->
+            </ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+    <div class="pxy-025 danger">
+        <favourite-beer-create-edit />
+    </div>
+
     <ion-list #beer class="py-0">
         <ion-item-sliding *ngFor="let favB of favBeers;">
-            <!-- <ion-item (click)="displayBeer(item)"> -->
-            <ion-item>
+            <ion-item (click)="displayEdit(favB, true)">
                 <ion-thumbnail slot="start" class="mr-0">
                     <img alt="{{favB.beer.name}}" src="assets/images/{{favB.beer.image}}" style="width: auto; max-height: 100%;" />
                 </ion-thumbnail>
@@ -31,5 +35,5 @@
         </ion-item-sliding>
     </ion-list>
 
-    <nk-testing storageKey="favouriteBeers"/>
+    <nk-testing storageKey="favouriteBeers" />
 </ion-content>

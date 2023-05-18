@@ -14,7 +14,6 @@ export interface Coordinates {
 export interface FavouriteBeer {
     id: number;
     beer: Beer;
-    is_favourite?: boolean,
     // venues: {
     //     name: string
     //     price: number,

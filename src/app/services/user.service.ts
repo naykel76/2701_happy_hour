@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import { User } from '../definitions';
-import { USER } from '../../data/user';
+import { USER } from '../data';
 
 @Injectable({
     providedIn: 'root'

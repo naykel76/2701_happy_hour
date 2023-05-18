@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
-import { VENUES } from 'src/data/venues';
+import { VENUES } from 'src/app/data';
 
 @Component({
     selector: 'app-venues',
