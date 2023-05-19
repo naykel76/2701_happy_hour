@@ -50,8 +50,8 @@ export class FavouriteBeerService {
      * Emits updated favorite beers to subscribers and updates storage.
      */
     private async updateFavouriteBeersFromStorage(): Promise<void> {
-        this.favouriteBeersSubject.next(this.favouriteBeers);
         await this.storageService.set('favouriteBeers', this.favouriteBeers);
+        this.favouriteBeersSubject.next(this.favouriteBeers);
     }
 
 }
