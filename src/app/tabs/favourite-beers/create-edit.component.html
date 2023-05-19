@@ -12,7 +12,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="light">
     <div *ngIf="editing; then editingBlock else newItemBlock"></div>
 
     <ng-template #editingBlock>
@@ -21,6 +21,30 @@
         </ion-item>
         <!-- <nk-beer-venues beerVenues="{{beer.venues}}" /> -->
         <h1>Venues Go Here!</h1>
+
+        {{editingItem.venues | json}}
+
+        <!-- <ion-list #beer>
+            <ion-item-sliding *ngFor="let beer of myBeers; index as i">
+                <ion-item (click)="displayBeer(beer)">
+                    <ion-thumbnail slot="start" class="mr-0">
+                        <img alt="{{beer.name}}" src="assets/images/{{beer.image}}" style="width: auto; max-height: 100%;" />
+                    </ion-thumbnail>
+                    <ion-label>
+                        {{beer.name}}
+                        <div class="txt-muted">Venue Cheapest Name - $8.00</div>
+                    </ion-label>
+                </ion-item>
+                <ion-item-options>
+                    <ion-item-option (click)="delete(beer.beer_id)" color="danger">
+                        <ion-icon slot="icon-only" name="trash"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list> -->
+
+
+
     </ng-template>
 
     <ng-template #newItemBlock>
@@ -38,7 +62,7 @@
 
         <ng-template #pleaseSelectBlock>
             <ion-card>
-                <ion-card-title class="pxy-1 tac primary">Select a beer from the list</ion-card-title>
+                <ion-card-content class="pxy-1 tac">Select a beer from the list to display venue details</ion-card-content>
             </ion-card>
         </ng-template>
 

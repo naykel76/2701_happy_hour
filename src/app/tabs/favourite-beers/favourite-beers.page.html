@@ -11,10 +11,6 @@
 
 <ion-content>
 
-    <div class="pxy-025 danger">
-        <favourite-beer-create-edit />
-    </div>
-
     <ion-list #beer class="py-0">
         <ion-item-sliding *ngFor="let favB of favBeers;">
             <ion-item (click)="displayEdit(favB, true)">
@@ -36,4 +32,5 @@
     </ion-list>
 
     <nk-testing storageKey="favouriteBeers" />
+
 </ion-content>

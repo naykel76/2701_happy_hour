@@ -14,10 +14,11 @@ export interface Coordinates {
 export interface FavouriteBeer {
     id: number;
     beer: Beer;
-    // venues: {
-    //     name: string
-    //     price: number,
-    //     } [];
+    venues?: {
+        id: number;
+        name: string
+        price: number,
+    }[];
 }
 
 export interface Venue {

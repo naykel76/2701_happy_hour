@@ -22,9 +22,7 @@ export class CreateEditComponent {
     // how do I access the selectIem passed in as props?
     constructor(private modal: ModalController) { }
 
-    ngOnInit() {
-        console.log(this.editingItem);
-    }
+    ngOnInit() { }
 
     /**
      * When item is selected from the dropdown, create the editingItem object
@@ -35,7 +33,6 @@ export class CreateEditComponent {
             id: this.getRandomId(1000, 2000),
             beer: event.detail.value
         };
-        console.log(this.editingItem);
     }
 
     /**
