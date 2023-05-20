@@ -19,30 +19,44 @@
         <ion-item>
             <ion-img src="assets/images/{{editingItem.beer.image}}" alt="{{editingItem.beer.name}}" class="mx-auto py-1"></ion-img>
         </ion-item>
-        <!-- <nk-beer-venues beerVenues="{{beer.venues}}" /> -->
-        <h1>Venues Go Here!</h1>
 
-        {{editingItem.venues | json}}
 
-        <!-- <ion-list #beer>
-            <ion-item-sliding *ngFor="let beer of myBeers; index as i">
-                <ion-item (click)="displayBeer(beer)">
-                    <ion-thumbnail slot="start" class="mr-0">
-                        <img alt="{{beer.name}}" src="assets/images/{{beer.image}}" style="width: auto; max-height: 100%;" />
-                    </ion-thumbnail>
-                    <ion-label>
-                        {{beer.name}}
-                        <div class="txt-muted">Venue Cheapest Name - $8.00</div>
-                    </ion-label>
-                </ion-item>
-                <ion-item-options>
-                    <ion-item-option (click)="delete(beer.beer_id)" color="danger">
+        <!-- {{editingItem.venues | json}} -->
+
+
+        <ion-toolbar color="dark">
+            <ion-title>Venue Pricing</ion-title>
+
+            <ion-buttons slot="end">
+                <ion-button (click)="select.open()">
+                    <ion-icon name="add-outline"></ion-icon>
+                </ion-button>
+            </ion-buttons>
+
+            <nk-venue-pricing #select></nk-venue-pricing>
+
+            <!-- <ion-item>
+                <ion-select interface="action-sheet" label="Select Beer" label-placement="stacked" (ionChange)="onSelectChange($event)">
+                    <ion-select-option *ngFor="let beer of beers;" [value]="beer">
+                        <ion-item>{{beer.name}}</ion-item>
+                    </ion-select-option>
+                </ion-select>
+            </ion-item> -->
+        </ion-toolbar>
+
+        <ion-item-sliding *ngFor="let venue of editingItem.venues">
+            <ion-item>
+                <div class="flex space-between w-full ha-c">
+                    <div class="fg1">{{venue.name}}</div>
+                    <ion-input value="${{venue.price}}" type="tel" min="0" max="10000" class="fg0 tar"></ion-input>
+                </div>
+            </ion-item>
+            <ion-item-options>
+                <!-- <ion-item-option (click)="delete(venue.venue_id)" color="danger">
                         <ion-icon slot="icon-only" name="trash"></ion-icon>
-                    </ion-item-option>
-                </ion-item-options>
-            </ion-item-sliding>
-        </ion-list> -->
-
+                    </ion-item-option> -->
+            </ion-item-options>
+        </ion-item-sliding>
 
 
     </ng-template>

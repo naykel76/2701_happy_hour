@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { FavouriteBeer } from '../../definitions';
 import { BEERS } from 'src/app/data';
+import { VenuePricingComponent } from 'src/app/components/venue-pricing.component';
 
 
 @Component({
     selector: 'favourite-beer-create-edit',
     templateUrl: './create-edit.component.html',
     standalone: true,
-    imports: [IonicModule, FormsModule, CommonModule]
+    imports: [IonicModule, FormsModule, CommonModule, VenuePricingComponent]
 })
 export class CreateEditComponent {
 

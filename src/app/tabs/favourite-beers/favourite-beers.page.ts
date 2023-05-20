@@ -19,11 +19,15 @@ export class FavouriteBeersPage implements OnInit {
 
     env = environment;
     favBeers: FavouriteBeer[];
+    dummy: FavouriteBeer;
 
     constructor(private fbs: FavouriteBeerService, private modal: ModalController) { }
 
     ngOnInit(): void {
         this.getFavouriteBeers();
+
+        this.dummy = this.favBeers[0];
+        this.displayEdit(this.dummy, true);
     }
 
     /**
@@ -58,7 +62,6 @@ export class FavouriteBeersPage implements OnInit {
         this.fbs.deleteFavouriteBeer(fbid);
     }
 }
-
 
 
    // modal.onDidDismiss()

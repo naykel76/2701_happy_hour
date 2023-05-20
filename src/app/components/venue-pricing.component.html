@@ -1,0 +1,33 @@
+<ion-modal [isOpen]="isOpen">
+
+    <ng-template>
+        <div>
+            <ion-header>
+                <ion-toolbar>
+                    <ion-buttons slot="start">
+                        <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
+                    </ion-buttons>
+                    <ion-title class="tac"> {{editing ? 'Edit' : 'Add'}} Venue Price </ion-title>
+                    <ion-buttons slot="end">
+                        <ion-button (click)="select()">Confirm</ion-button>
+                    </ion-buttons>
+                </ion-toolbar>
+            </ion-header>
+
+            <ion-item>
+                <ion-select interface="action-sheet" label="Select Venue" label-placement="stacked">
+                    <ion-select-option *ngFor="let venue of venues;" [value]="venue">
+                        <ion-item>{{venue.name}}</ion-item>
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-input label="Price" label-placement="stacked" type="tel" [(ngModel)]="price" (input)="updateFormattedPrice()" />
+            </ion-item>
+
+        </div>
+
+    </ng-template>
+
+</ion-modal>
