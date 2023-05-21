@@ -23,7 +23,10 @@ export class CreateEditComponent {
     // how do I access the selectIem passed in as props?
     constructor(private modal: ModalController) { }
 
-    ngOnInit() { }
+    ngOnInit() {
+        console.log(this.editingItem);
+
+     }
 
     /**
      * When item is selected from the dropdown, create the editingItem object
@@ -40,7 +43,9 @@ export class CreateEditComponent {
      * close the modal and set data and role
      */
     save() {
-        // this.modal.dismiss(this.beer, 'saved');
+        console.log(this.editingItem);
+        // pass the editingItem back to be updated
+        this.modal.dismiss(this.editingItem, 'saved');
     }
 
     /**
@@ -57,6 +62,29 @@ export class CreateEditComponent {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    /**
+     * ----------------------------------------------------------
+     * VENUE PRICING
+     * ----------------------------------------------------------
+     * Changes are not final until the favourite-beer is saved.
+     */
+
+
+    addVenue(venueData: any) {
+        this.editingItem.venues.push(venueData);
+        console.log(venueData);
+        console.log( this.editingItem);
+    }
+
+    /**
+     * remove venue from the editingItem.venues array
+     */
+    removeVenue(venue_id: number) {
+        const currentVenues = this.editingItem.venues;
+        const updatedVenues = currentVenues.filter(items => items.id !== venue_id);
+        this.editingItem.venues = updatedVenues;
     }
 
 }
