@@ -19,15 +19,11 @@ export class FavouriteBeersPage implements OnInit {
 
     env = environment;
     favBeers: FavouriteBeer[];
-    dummy: FavouriteBeer;
 
     constructor(private fbs: FavouriteBeerService, private modal: ModalController) { }
 
     ngOnInit(): void {
         this.getFavouriteBeers();
-
-        this.dummy = this.favBeers[0];
-        this.displayEdit(this.dummy, true);
     }
 
     /**
@@ -43,33 +39,33 @@ export class FavouriteBeersPage implements OnInit {
     /**
      * Open modal to create, edit and display the selected favourite
      */
-    async displayEdit(favB: FavouriteBeer | null, editing: boolean) {
+    async createEdit(favB: FavouriteBeer | null, editing: boolean) {
 
         const modal = await this.modal.create({
             component: CreateEditComponent,
             componentProps: { editing: editing, editingItem: favB }
         })
 
+        modal.onDidDismiss()
+            // this will receive back an updated favBeers object
+            .then((res) => {
+                if (res.role == 'cancel') {
+                    console.log('do nothing');
+                } else {
+                    this.fbs.save(res.data);
+                }
+            });
+
         return modal.present();
     }
 
     /**
-     * Deletes a favorite beer by its ID. Calls the deleteFavouriteBeer method
+     * Deletes a favorite beer by its ID. Calls the delete method
      * of FavouriteBeerService to remove the beer from the list.
      * @param fbid favorite_beer_id to be deleted.
      */
     delete(fbid: number): void {
-        this.fbs.deleteFavouriteBeer(fbid);
+        this.fbs.delete(fbid);
     }
 }
 
-
-   // modal.onDidDismiss()
-    //     .then((res) => {
-    //         if (res.role == 'cancel') {
-    //             console.log('do nothing');
-    //         } else {
-    //             // edit and back actions
-    //             console.log(res.data);
-    //         }
-    //     });

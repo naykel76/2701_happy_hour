@@ -2,7 +2,7 @@
     <ion-toolbar color="primary">
         <ion-title>My Beers</ion-title>
         <ion-buttons slot="end">
-            <ion-button id="open-modal" expand="block" (click)="displayEdit(null, false)">
+            <ion-button id="open-modal" expand="block" (click)="createEdit(null, false)">
                 <ion-icon name="add-outline"></ion-icon>
             </ion-button>
         </ion-buttons>
@@ -13,7 +13,7 @@
 
     <ion-list #beer class="py-0">
         <ion-item-sliding *ngFor="let favB of favBeers;">
-            <ion-item (click)="displayEdit(favB, true)">
+            <ion-item (click)="createEdit(favB, true)">
                 <ion-thumbnail slot="start" class="mr-0">
                     <img alt="{{favB.beer.name}}" src="assets/images/{{favB.beer.image}}" style="width: auto; max-height: 100%;" />
                 </ion-thumbnail>

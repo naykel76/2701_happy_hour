@@ -28,7 +28,8 @@ export class VenuePricingComponent {
      * Strip the dollar sign from the price and emit event
      */
     confirm() {
-        this.newVenueEvent.emit({ name: this.venue.name, price: this.price.substring(1) });
+        let convertedPrice = parseFloat(this.price.substring(1));
+        this.newVenueEvent.emit({ name: this.venue.name, price: convertedPrice });
         this.reset();
     }
 

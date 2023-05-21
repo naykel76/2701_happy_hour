@@ -7,7 +7,7 @@
             <h2>{{editing ? editingItem.beer.name : 'Add Beer'}}</h2>
         </ion-title>
         <ion-buttons slot="end">
-            <ion-button (click)="save()" [strong]="true">Confirm</ion-button>
+            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -27,7 +27,7 @@
                     <ion-icon name="add-outline"></ion-icon>
                 </ion-button>
             </ion-buttons>
-            <nk-venue-pricing #venuePriceModal (newVenueEvent)="addVenue($event)"></nk-venue-pricing>
+            <nk-venue-pricing #venuePriceModal (newVenueEvent)="addUpdateVenue($event)"></nk-venue-pricing>
         </ion-toolbar>
 
         <ion-list class="pxy-0">
