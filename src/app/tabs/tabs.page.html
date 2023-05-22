@@ -1,23 +1,21 @@
-<ion-tabs (ionTabsDidChange)="showHideToolbar()">
-    <!-- <div *ngIf="showTabs"> -->
-        <ion-tabs>
-            <ion-tab-bar slot="bottom">
-                <ion-tab-button tab="home">
-                    <ion-icon src="assets/svg/home.svg"></ion-icon>
-                </ion-tab-button>
-                <ion-tab-button tab="find-mates">
-                    <ion-icon src="/assets/svg/cheers.svg"></ion-icon>
-                </ion-tab-button>
-                <ion-tab-button tab="favourite-beers">
-                    <ion-icon src="/assets/svg/beer.svg"></ion-icon>
-                </ion-tab-button>
-                <ion-tab-button tab="venues">
-                    <ion-icon src="/assets/svg/venue.svg"></ion-icon>
-                </ion-tab-button>
-                <ion-tab-button tab="profile">
-                    <ion-icon src="/assets/svg/drinker.svg"></ion-icon>
-                </ion-tab-button>
-            </ion-tab-bar>
-        </ion-tabs>
-    <!-- </div> -->
+<ion-tabs>
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+            <ion-tab-button tab="home">
+                <ion-icon src="assets/svg/home.svg"></ion-icon>
+            </ion-tab-button>
+            <ion-tab-button tab="find-mates">
+                <ion-icon src="/assets/svg/cheers.svg"></ion-icon>
+            </ion-tab-button>
+            <ion-tab-button tab="favourite-beers">
+                <ion-icon src="/assets/svg/beer.svg"></ion-icon>
+            </ion-tab-button>
+            <ion-tab-button tab="venues">
+                <ion-icon src="/assets/svg/venue.svg"></ion-icon>
+            </ion-tab-button>
+            <ion-tab-button (click)="editProfile()">
+                <ion-icon src="/assets/svg/drinker.svg"></ion-icon>
+            </ion-tab-button>
+        </ion-tab-bar>
+    </ion-tabs>
 </ion-tabs>

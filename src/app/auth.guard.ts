@@ -1,20 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from './services/user.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthGuard {
 
-    isLoggedIn: boolean = true;
+    constructor(private router: Router, private userService: UserService) { }
 
-    constructor(private router: Router) { }
+    async canActivate(): Promise<boolean> {
 
-    canActivate(): boolean {
-        if (!this.isLoggedIn) {
+        if (! await this.userService.isLoggedIn()) {
             this.router.navigate(['/login']);
             return false;
         }
+
         return true;
     }
 

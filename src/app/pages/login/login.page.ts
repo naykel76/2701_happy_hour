@@ -32,8 +32,9 @@ export class LoginPage implements OnInit {
 
         const auth = await this.userService.getCredentials();
 
-        if (auth.password === this.password && auth.email === this.email) {
-            this.storageService.set('loggedIn', true);
+        // Don't judge me, it works :)
+        if (this.email && this.password && auth && auth.password === this.password && auth.email === this.email) {
+            this.storageService.set('isLoggedIn', true);
             this.router.navigate(['/home'])
         } else {
             this.message = 'The email or password is incorrect.'
@@ -44,7 +45,6 @@ export class LoginPage implements OnInit {
      * Reset the users password
      */
     resetPassword(): void {
-        // this.userService.set('user.password', '12345');
         alert('password has been reset to 12345');
     }
 
