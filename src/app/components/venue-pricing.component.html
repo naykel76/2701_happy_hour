@@ -1,30 +1,31 @@
+<ion-toolbar color="dark">
+    <ion-title>Venue Pricing</ion-title>
+    <ion-buttons slot="end">
+        <ion-button (click)="addVenuePrice()">
+            <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
+</ion-toolbar>
+
 <ion-modal [isOpen]="isOpen" color="dark">
-
     <ng-template>
-
         <ion-card class="ion-padding mxy">
-
             <ion-item>
                 <ion-select [(ngModel)]="venue" (ionChange)="validate()"
                     interface="action-sheet" label="Select Venue" label-placement="stacked">
-                    <ion-select-option *ngFor="let venue of venues;" [value]="venue">
+                    <ion-select-option *ngFor="let venue of selectableVenues;" [value]="venue">
                         <ion-item>{{venue.name}}</ion-item>
                     </ion-select-option>
                 </ion-select>
             </ion-item>
-
             <ion-item>
                 <ion-input [(ngModel)]="price" (input)="updateFormattedPrice(); validate()"
                     label="Price" label-placement="stacked" type="tel" />
             </ion-item>
-
             <div class="grid-0 cols-2 mt">
                 <ion-button slot="end" (click)="cancel()" fill="outline">Cancel</ion-button>
                 <ion-button slot="end" (click)="confirm()" [disabled]="!goodToGo" [strong]="true">Confirm</ion-button>
             </div>
-
         </ion-card>
-
     </ng-template>
-
 </ion-modal>
