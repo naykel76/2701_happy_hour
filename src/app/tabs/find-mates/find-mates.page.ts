@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { environment } from 'src/environments/environment';
+import { VENUES } from 'src/app/data';
+import { Venue } from 'src/app/definitions';
 
 @Component({
     selector: 'app-find-mates',
@@ -43,24 +45,18 @@ export class FindMatesPage {
     }
 
     async addMarkers() {
-        const markers: Marker[] = [
-            {
-                title: 'Runcorn Tavern',
+
+        // map stored venues to markers
+        const markers: Marker[] = VENUES.map((venue: Venue) => {
+            return {
+                title: venue.name,
                 coordinate: {
-                    lat: -27.595725912524248,
-                    lng: 153.06536734191715
+                    lat: venue.coordinates.lat,
+                    lng: venue.coordinates.lng
                 },
-                snippet: 'some snippet'
-            },
-            {
-                title: 'Souths Sports Club',
-                coordinate: {
-                    lat: -27.576548,
-                    lng: 153.0161967
-                },
-                snippet: 'another snippet'
-            },
-        ]
+                snippet: 'some snippet' // You can customize the snippet if needed
+            };
+        });
 
         await this.map.addMarkers(markers);
 
