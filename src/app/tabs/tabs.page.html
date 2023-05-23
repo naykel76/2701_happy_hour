@@ -1,6 +1,6 @@
 <ion-tabs>
     <ion-tabs>
-        <ion-tab-bar slot="bottom">
+        <ion-tab-bar slot="bottom" *ngIf="shouldDisplayTabs()">
             <ion-tab-button tab="home">
                 <ion-icon src="assets/svg/home.svg"></ion-icon>
             </ion-tab-button>
@@ -13,7 +13,7 @@
             <ion-tab-button tab="venues">
                 <ion-icon src="/assets/svg/venue.svg"></ion-icon>
             </ion-tab-button>
-            <ion-tab-button (click)="editProfile()">
+            <ion-tab-button (click)="displayEditUserProfile()">
                 <ion-icon src="/assets/svg/drinker.svg"></ion-icon>
             </ion-tab-button>
         </ion-tab-bar>

@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EnvironmentInjector, inject } from '@angular/core';
-import { IonicModule, ModalController } from '@ionic/angular';
-import { ProfileModalComponent } from '../pages/profile/profile-modal.component';
+import { IonicModule } from '@ionic/angular';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-tabs',
@@ -10,22 +11,23 @@ import { ProfileModalComponent } from '../pages/profile/profile-modal.component'
     imports: [IonicModule, CommonModule],
 })
 export class TabsPage {
-    public environmentInjector = inject(EnvironmentInjector);
 
-    showTabs: Boolean;
+    environmentInjector = inject(EnvironmentInjector);
 
-    constructor(private modal: ModalController,) {
-        this.editProfile();
+    constructor(private userService: UserService, private router: Router) { }
+
+    /**
+     * guard to prevent tabs displaying on 'home' route
+     */
+    shouldDisplayTabs(): boolean {
+        return this.router.url !== '/home';
     }
 
-    async editProfile() {
-
-        const modal = await this.modal.create({
-            component: ProfileModalComponent,
-            componentProps: { isOpen: true }
-        })
-
-        return modal.present();
+    /**
+     * Open the user profile modal
+     */
+    async displayEditUserProfile() {
+        await this.userService.displayEditUserProfile();
     }
 
 }

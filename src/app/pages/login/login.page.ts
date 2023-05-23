@@ -56,8 +56,9 @@ export class LoginPage implements OnInit {
         this.password = '12345';
     }
 
+
     async setDefaultUser() {
-        await this.userService.setUser();
+        await this.userService.setUserInStorage();
     }
 
 }

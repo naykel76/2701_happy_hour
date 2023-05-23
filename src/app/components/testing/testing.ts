@@ -39,7 +39,7 @@ export class TestingComponent implements OnInit {
     }
 
     async setDefaultUser() {
-        await this.userService.setUser();
+        await this.userService.setUserInStorage();
         this.refresh()
     }
 

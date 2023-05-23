@@ -3,13 +3,10 @@ import { CommonModule } from '@angular/common';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
-// import { StorageService } from './services/storage.service';
-// import { User } from './definitions';
 import { FormsModule } from '@angular/forms';
 import { User } from 'src/app/definitions';
 import { UserService } from 'src/app/services/user.service';
-// import { AuthGuard } from './auth.guard';
-// import { UserService } from './services/user.service';
+import { format, parseISO } from 'date-fns';
 
 @Component({
     selector: 'app-profile-modal',
@@ -22,15 +19,15 @@ export class ProfileModalComponent implements OnInit {
     // @ViewChild(IonPopover) popover: IonPopover;
     showNotifications: boolean;
 
+    // NK?? need to declare each property or I get a ctx error. Why?
     user: User = {
-        name: 'Billy McDoogle',
-        email: 'billy_mac@gmail.com',
-        password: '12345',
-        birthday: '23/09/1996',
-        phone: '0404 0505 0909',
-        avatar: 'avatar.png'
+        name: '',
+        email: '',
+        password: '',
+        birthday: '',
+        phone: '',
+        avatar: ''
     }
-
 
     actionSheetButtons = [
         {
@@ -51,14 +48,16 @@ export class ProfileModalComponent implements OnInit {
 
     constructor(private modal: ModalController, private userService: UserService) { }
 
-    ngOnInit() { }
+    async ngOnInit() {
+        this.user = await this.userService.getUserFromStorage();
+    }
 
     /**
-     * close the modal and set data and role
+     * save the user to storage and close the modal
      */
     save() {
-        // this.modal.dismiss(this.user, 'saved');
-        // update storage?
+        this.userService.updateSetUser(this.user);
+        this.modal.dismiss(null, 'saved');
     }
 
     /**
@@ -72,14 +71,11 @@ export class ProfileModalComponent implements OnInit {
         this.userService.logOut();
     }
 
-    // /**
-    //  * set user birthday as human readable string
-    //  */
-    // setBirthday(value) {
-
-    //     console.log(value);
-
-    //     this.user.birthday = format(parseISO(value), 'dd/MM/yyyy');
-    // }
+    /**
+     * set user birthday as human readable string
+     */
+    setBirthday(value) {
+        this.user.birthday = format(parseISO(value), 'dd/MM/yyyy');
+    }
 
 }

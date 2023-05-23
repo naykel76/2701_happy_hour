@@ -37,7 +37,7 @@
             </div>
         </div>
     </ion-card>
-    <ion-card [routerLink]="['/profile']">
+    <ion-card (click)="displayEditUserProfile()">
         <div class="flex va-c pxy-1">
             <svg class="icon wh-4 mr-2">
                 <use xlink:href="/assets/svg/ui-sprite.svg#drinker"></use>
@@ -49,5 +49,3 @@
         </div>
     </ion-card>
 </ion-content>
-
-

@@ -34,7 +34,6 @@ export class FavouriteBeerService {
         return this.favouriteBeersSubject.asObservable();
     }
 
-
     async save(favBeer: FavouriteBeer): Promise<void> {
         const index = this.getItemIndex(favBeer.id);
 
@@ -88,7 +87,6 @@ export class FavouriteBeerService {
 //     this.favouriteBeers.push(beer);
 //     await this.updateStorage();
 //   }
-
 
 
 //   private async updateStorage(): Promise<void> {
