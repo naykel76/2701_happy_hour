@@ -12,14 +12,24 @@
 </ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
 
+    <ion-fab horizontal="end">
+        <ion-fab-button (click)="takeProfilePhoto()">
+            <ion-icon name="camera"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
     <div class="tac relative">
-        <img src="{{imageSource}}" class="round wh-10" alt="">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+                    <ion-img [src]="photo.webviewPath"></ion-img>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+
+        <!-- <img src="{{imageSource}}" class="round wh-10" alt=""> -->
         <!-- <img src="assets/images/avatar.png" alt="profile picture"> -->
-        <div class="absolute pos-r pos-t">
-            <ion-button (click)="takePicture()" shape="round" fill="clear" size="large">
-                <ion-icon color="secondary" src="/assets/svg/camera.svg" class="wh-3"></ion-icon>
-            </ion-button>
-        </div>
+
     </div>
 
     <ion-list class="mt">

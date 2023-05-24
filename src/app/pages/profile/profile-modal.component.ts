@@ -1,12 +1,11 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { User } from 'src/app/definitions';
 import { UserService } from 'src/app/services/user.service';
 import { format, parseISO } from 'date-fns';
-import { Camera, CameraResultType } from '@capacitor/camera';
-import { CameraSource } from '@capacitor/camera/dist/esm/definitions';
+import { PhotoService } from 'src/app/services/photo.service';
 
 @Component({
     selector: 'app-profile-modal',
@@ -18,7 +17,6 @@ export class ProfileModalComponent implements OnInit {
 
     // @ViewChild(IonPopover) popover: IonPopover;
     showNotifications: boolean;
-    imageSource: any;
 
     // NK?? need to declare each property or I get a ctx error. Why?
     user: User = {
@@ -29,11 +27,13 @@ export class ProfileModalComponent implements OnInit {
         phone: '',
         avatar: ''
     }
+    // profilePicture: any;
 
-    constructor(private modal: ModalController, private userService: UserService) { }
+    constructor(private modal: ModalController, private userService: UserService, public photoService: PhotoService) { }
 
     async ngOnInit() {
         this.user = await this.userService.getUserFromStorage();
+        await this.photoService.loadSaved();
     }
 
     /**
@@ -51,6 +51,8 @@ export class ProfileModalComponent implements OnInit {
         this.modal.dismiss(null, 'cancel');
     }
 
+
+
     /**
      * set user birthday as human readable string
      */
@@ -59,21 +61,9 @@ export class ProfileModalComponent implements OnInit {
     }
 
 
-    takePicture = async () => {
-        const image = await Camera.getPhoto({
-            quality: 90,
-            allowEditing: false,
-            resultType: CameraResultType.Uri,
-            // resultType: CameraResultType.DataUrl,
-            source: CameraSource.Prompt,
-            saveToGallery: true
-        });
 
-        Camera.getPhoto
-        this.imageSource = image.dataUrl;
-
-        console.log(this.imageSource);
-
+    takeProfilePhoto() {
+        this.photoService.takePhoto();
     }
 
     logout() {
