@@ -38,7 +38,7 @@ export class FindMatesPage {
                     lat: -27.595725912524248,
                     lng: 153.06536734191715
                 },
-                zoom: 8,
+                zoom: 12,
             },
         });
         this.addMarkers();
@@ -61,5 +61,8 @@ export class FindMatesPage {
         await this.map.addMarkers(markers);
 
     }
+
+
+
 
 }

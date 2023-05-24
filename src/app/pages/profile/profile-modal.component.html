@@ -11,15 +11,17 @@
     </ion-toolbar>
 </ion-header>
 <ion-content [fullscreen]="true" class="ion-padding">
+
     <div class="tac relative">
-        <img src="assets/images/avatar.png" alt="profile picture">
+        <img src="{{imageSource}}" class="round wh-10" alt="">
+        <!-- <img src="assets/images/avatar.png" alt="profile picture"> -->
         <div class="absolute pos-r pos-t">
-            <ion-button id="open-action-sheet" shape="round" fill="clear" size="large">
+            <ion-button (click)="takePicture()" shape="round" fill="clear" size="large">
                 <ion-icon color="secondary" src="/assets/svg/camera.svg" class="wh-3"></ion-icon>
             </ion-button>
         </div>
-        <ion-action-sheet trigger="open-action-sheet" [buttons]="actionSheetButtons"></ion-action-sheet>
     </div>
+
     <ion-list class="mt">
         <ion-item>
             <ion-input [(ngModel)]="user.name" label="Name" labelPlacement="floating" />
