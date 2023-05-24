@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Check In Data</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+    <ion-item>
+        <ion-button (click)="topFiveVisited()">Top 5 Visited</ion-button>
+        <ion-button (click)="showAllData()">Show All</ion-button>
+    </ion-item>
+
+    <!-- height=700px -->
+    <ion-card>
+        <div style="min-height: 500px;">
+            <canvas #myChart></canvas>
+        </div>
+    </ion-card>
+</ion-content>

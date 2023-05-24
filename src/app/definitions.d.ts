@@ -36,3 +36,4 @@ export interface User {
     phone: any;
     avatar: string;
 }
+

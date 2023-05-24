@@ -50,7 +50,11 @@ export const routes: Routes = [
     {
         path: 'dev',
         loadComponent: () => import('./dev.page').then(m => m.DevPage)
-    },
+    },  {
+    path: 'check-in',
+    loadComponent: () => import('./tabs/check-in/check-in.page').then( m => m.CheckInPage)
+  },
+
 
 
 
