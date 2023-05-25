@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
     selector: 'app-start',
@@ -14,12 +15,12 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class StartPage implements OnInit {
 
-    constructor(private userService: UserService, private router: Router) { }
+    constructor(private userService: UserService, private auth: AuthService, private router: Router) { }
 
     async ngOnInit() {
         try {
             await this.setDefaultUserIfNotExists();
-            await this.redirectToHomeIfLoggedIn();
+            await this.redirectToHomeIfRememberAndLoggedIn();
         } catch (error) {
             console.log('there is a problem setting the user data on the start page');
         }
@@ -31,8 +32,9 @@ export class StartPage implements OnInit {
         }
     }
 
-    private async redirectToHomeIfLoggedIn() {
-        if (await this.userService.isLoggedIn() && this.userService.rememberMe()) {
+    private async redirectToHomeIfRememberAndLoggedIn() {
+        const remember = await this.auth.getRememberMe()
+        if (await this.auth.isLoggedIn() && remember) {
             this.router.navigate(['/home']);
         } else {
             return;

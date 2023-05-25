@@ -17,12 +17,20 @@ export class UserService {
         private modal: ModalController
     ) { }
 
+    /** -------------------------------------------------------------------
+     * Storage getter and setters
+     * --------------------------------------------------------------------
+     */
     async setUserInStorage(): Promise<void> {
         await this.storageService.set('user', USER);
     }
 
     async getUserFromStorage(): Promise<User> {
         return await this.storageService.get('user');
+    }
+
+    async setPassword(password: any) {
+        await this.storageService.set('user.password', password);
     }
 
     /**
@@ -33,21 +41,9 @@ export class UserService {
     }
 
     /**
-     * set the password from storage
+     * Open the profile modal with user details
      */
-    async setPassword(password: any) {
-        await this.storageService.set('user.password', password);
-    }
-
-    /**
-     * get super secure authentication credentials from storage
-     */
-    async getCredentials(): Promise<{ email: string, password: string }> {
-        const user = await this.storageService.get('user');
-        return { email: user?.email, password: user?.password };
-    }
-
-    async displayEditUserProfile() {
+    async displayEditUserProfile(): Promise<void> {
 
         const modal = await this.modal.create({
             component: ProfileModalComponent,
@@ -57,30 +53,20 @@ export class UserService {
         return modal.present();
     }
 
-    // NK::TD add this to login
-    async rememberMe(): Promise<boolean> {
-        return (await this.storageService.get('rememberMe')) ?? false;
-    }
-
-
-    // reset all storage data and return to default state
-    // NK:TD clear files???
-    reset(){
-        this.setUserInStorage()
-    }
     /**
-     * ------------------------------------------------------------------
-     * AUTH
-     * ------------------------------------------------------------------
-     * These functions would typically be in an auth service but they are
-     * created here for simplicity
+     * reset all storage data and return to default state
      */
-
-    async isLoggedIn(): Promise<boolean> {
-        return (await this.storageService.get('isLoggedIn')) ?? false;
+    async resetApp(): Promise<void> {
+        await this.storageService.clear();
+        await this.setUserInStorage();
+        this.router.navigate(['/start']);
     }
 
-    logOut() {
+    /**
+     * this function really belongs in the auth service but i have left it
+     * here for simplicity
+     */
+    logOut(): void {
         this.storageService.remove('isLoggedIn');
         this.router.navigate(['/start']);
     }

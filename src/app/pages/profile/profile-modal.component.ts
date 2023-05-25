@@ -48,8 +48,9 @@ export class ProfileModalComponent implements OnInit {
     /**
      *  reset app with default state
      */
-    async reset(): Promise<void> {
-        await this.userService.reset();
+    async resetApp(): Promise<void> {
+        await this.userService.resetApp();
+        this.modal.dismiss(null, 'cancel');
     }
 
     /**

@@ -8,6 +8,9 @@
                 <ion-item>
                     <ion-input [(ngModel)]="password" type="password" label="Password" labelPlacement="floating" />
                 </ion-item>
+                <ion-item>
+                    <ion-checkbox [(ngModel)]="remember" justify="space-between">Remember Me</ion-checkbox>
+                </ion-item>
                 <div class="mt">
                     <ion-button (click)="login()" color="primary" expand="full"> Login </ion-button>
                     <ion-button (click)="resetPassword()" fill="clear" expand="full"> Forgot Password? </ion-button>
