@@ -4,6 +4,8 @@ import { IonicModule } from '@ionic/angular';
 import Chart from 'chart.js/auto';
 import { FormsModule } from '@angular/forms';
 import { CHECK_IN_LOG, VENUES } from 'src/app/data';
+import { CheckInService } from 'src/app/services/check-in.service';
+import { log } from 'console';
 
 @Component({
     selector: 'app-check-in',
@@ -15,23 +17,48 @@ export class CheckInPage implements OnInit {
 
     @ViewChild('myChart', { static: true }) canvas: any;
     chart: any;
-
-    checkInLog = CHECK_IN_LOG;
     checkInData: Array<any>; // all stored data
 
-    constructor() { }
+    constructor(private cis: CheckInService) { }
 
-    ngOnInit() {
-        this.setInitialData();
+    async ngOnInit() {
+        this.subscribeToCheckIn();
+    }
+
+    /**
+     * Retrieve check in data and subscribes to the changes.
+     */
+    subscribeToCheckIn() {
+        this.cis.getCheckInsObservable().subscribe((checkIns: any[]) => {
+            // Access and use the check-ins data here
+            this.prepareDataForChart(checkIns)
+        });
+    }
+
+    /**
+     * Format check in data for use in chart
+     * STRUCTURE: {date: '22-05-04', venue_id: 306, name: 'Sunnybank Hotel'}
+     */
+    prepareDataForChart(data: any[]) {
+        this.checkInData = data.map((item) => {
+            const venue = VENUES.find((venue) => venue.id === item.venue_id);
+            const name = venue ? venue.name : 'Unknown Venue';
+            return { ...item, name };
+        });
         this.showAllData();
     }
 
+    /**
+     * display the chart with all data
+     */
     showAllData(): void {
         let data = this.totalCheckInsByVenue(this.checkInData);
-        console.log(data);
         this.createChart(data);
     }
 
+    /**
+     * Display the top 5 most visited venues
+     */
     topFiveVisited(): void {
         const dataObject = this.totalCheckInsByVenue(this.checkInData);
         // Convert the object into an array of key-value pairs
@@ -44,18 +71,6 @@ export class CheckInPage implements OnInit {
             obj[key] = value;
         }
         this.createChart(obj);
-    }
-
-    /**
-     * Return all check in data formatted for chart
-     * STRUCTURE: {date: '22-05-04', venue_id: 306, name: 'Sunnybank Hotel'}
-     */
-    setInitialData() {
-        this.checkInData = this.checkInLog.map((item) => {
-            const venue = VENUES.find((venue) => venue.id === item.venue_id);
-            const name = venue ? venue.name : 'Unknown Venue';
-            return { ...item, name };
-        });
     }
 
     /**

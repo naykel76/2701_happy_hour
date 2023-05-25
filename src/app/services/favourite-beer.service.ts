@@ -83,13 +83,3 @@ export class FavouriteBeerService {
 
 }
 
-//   async addFavouriteBeer(beer: FavouriteBeer): Promise<void> {
-//     this.favouriteBeers.push(beer);
-//     await this.updateStorage();
-//   }
-
-
-//   private async updateStorage(): Promise<void> {
-//     await this.storage.set(this.storageKey, this.favouriteBeers);
-//     this.fbSubject.next(this.favouriteBeers);
-//   }

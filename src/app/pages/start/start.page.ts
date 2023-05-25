@@ -27,7 +27,6 @@ export class StartPage implements OnInit {
     async ngOnInit() {
         try {
             await this.setDefaultUserIfNotExists();
-            await this.setCheckInDataIfNotExists();
             await this.redirectToHomeIfRememberAndLoggedIn();
         } catch (error) {
             console.log('there is a problem setting the user data on the start page');
@@ -37,12 +36,6 @@ export class StartPage implements OnInit {
     private async setDefaultUserIfNotExists() {
         if (! await this.userService.getUserFromStorage()) {
             await this.userService.setUserInStorage();
-        }
-    }
-
-    private async setCheckInDataIfNotExists() {
-        if (! await this.storageService.get('checkInLog')) {
-            await this.storageService.set('checkInLog', CHECK_IN_LOG);
         }
     }
 
