@@ -28,6 +28,10 @@ export const routes: Routes = [
                     import('./tabs/home/home.page').then((m) => m.HomePage,),
             },
             {
+                path: 'check-in',
+                loadComponent: () => import('./tabs/check-in/check-in.page').then(m => m.CheckInPage)
+            },
+            {
                 path: 'find-mates',
                 loadComponent: () => import('./tabs/find-mates/find-mates.page').then(m => m.FindMatesPage)
             },
@@ -51,10 +55,6 @@ export const routes: Routes = [
         path: 'dev',
         loadComponent: () => import('./dev.page').then(m => m.DevPage)
     },
-  {
-    path: 'check-in',
-    loadComponent: () => import('./tabs/check-in/check-in.page').then( m => m.CheckInPage)
-  },
 
 
 
