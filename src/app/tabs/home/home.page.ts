@@ -12,7 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 export class HomePage {
 
     constructor(private userService: UserService) {
-this.userService.displayEditUserProfile();}
+        // this.userService.displayEditUserProfile();
+    }
 
     /**
      * Open the user profile modal

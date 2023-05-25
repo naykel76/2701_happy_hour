@@ -57,6 +57,17 @@ export class UserService {
         return modal.present();
     }
 
+    // NK::TD add this to login
+    async rememberMe(): Promise<boolean> {
+        return (await this.storageService.get('rememberMe')) ?? false;
+    }
+
+
+    // reset all storage data and return to default state
+    // NK:TD clear files???
+    reset(){
+        this.setUserInStorage()
+    }
     /**
      * ------------------------------------------------------------------
      * AUTH
@@ -70,7 +81,7 @@ export class UserService {
     }
 
     logOut() {
-        this.router.navigate(['/login']);
         this.storageService.remove('isLoggedIn');
+        this.router.navigate(['/start']);
     }
 }

@@ -6,6 +6,7 @@ import { User } from 'src/app/definitions';
 import { UserService } from 'src/app/services/user.service';
 import { format, parseISO } from 'date-fns';
 import { PhotoService } from 'src/app/services/photo.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-profile-modal',
@@ -14,9 +15,6 @@ import { PhotoService } from 'src/app/services/photo.service';
     standalone: true
 })
 export class ProfileModalComponent implements OnInit {
-
-    // @ViewChild(IonPopover) popover: IonPopover;
-    showNotifications: boolean;
 
     // NK?? need to declare each property or I get a ctx error. Why?
     user: User = {
@@ -27,9 +25,12 @@ export class ProfileModalComponent implements OnInit {
         phone: '',
         avatar: ''
     }
-    // profilePicture: any;
 
-    constructor(private modal: ModalController, private userService: UserService, public photoService: PhotoService) { }
+    constructor(
+        private modal: ModalController,
+        private userService: UserService,
+        public photoService: PhotoService,
+    ) { }
 
     async ngOnInit() {
         this.user = await this.userService.getUserFromStorage();
@@ -37,21 +38,19 @@ export class ProfileModalComponent implements OnInit {
     }
 
     /**
-     * save the user to storage and close the modal
+     * close the modal
      */
-    save() {
+    back() {
         this.userService.updateSetUser(this.user);
-        this.modal.dismiss(null, 'saved');
-    }
-
-    /**
-     * close the modal setting data = null, and role = cancel
-     */
-    cancel() {
         this.modal.dismiss(null, 'cancel');
     }
 
-
+    /**
+     *  reset app with default state
+     */
+    async reset(): Promise<void> {
+        await this.userService.reset();
+    }
 
     /**
      * set user birthday as human readable string
@@ -61,12 +60,13 @@ export class ProfileModalComponent implements OnInit {
     }
 
 
-
     takeProfilePhoto() {
         this.photoService.takePhoto();
     }
 
+    // NK::TD move to user service
     logout() {
         this.userService.logOut();
+        this.modal.dismiss(null, 'cancel');
     }
 }

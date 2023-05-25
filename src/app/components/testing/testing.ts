@@ -11,7 +11,6 @@ import { User } from 'src/app/definitions';
     template: `
         <ion-card color="dark" *ngIf="env.testing" class="maxw-400 mx-auto">
             <ion-card-content>
-                <ion-button (click)="setDefaultUser()" fill="clear" color="warning" expand="full"> Set Default User Data </ion-button>
                 <ion-button (click)="clearStorage()" fill="clear" color="warning" expand="full"> Clear Storage </ion-button>
                 <small><pre>{{ data | json }}</pre></small>
             </ion-card-content>
@@ -38,10 +37,6 @@ export class TestingComponent implements OnInit {
         this.refresh()
     }
 
-    async setDefaultUser() {
-        await this.userService.setUserInStorage();
-        this.refresh()
-    }
 
     private async refresh() {
         this.data = await this.storageService.get(this.storageKey);

@@ -1,15 +1,15 @@
 <ion-header>
     <ion-toolbar color="primary">
         <ion-buttons slot="start">
-            <ion-button (click)="cancel()"> Cancel </ion-button>
+            <ion-button (click)="back()">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+                Back
+            </ion-button>
         </ion-buttons>
-        <ion-title class="tac">Edit Profile</ion-title>
-        <ion-buttons slot="end">
-            <ion-button id="open-toast" (click)="save()"> Save </ion-button>
-        </ion-buttons>
-        <ion-toast trigger="open-toast" color="success" position="bottom" message="Profile Saved" [duration]="2000"></ion-toast>
+        <ion-title>Profile</ion-title>
     </ion-toolbar>
 </ion-header>
+
 <ion-content [fullscreen]="true" class="ion-padding">
 
     <ion-fab horizontal="end">
@@ -18,18 +18,8 @@
         </ion-fab-button>
     </ion-fab>
 
-    <div class="tac relative">
-        <ion-grid>
-            <ion-row>
-                <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
-                    <ion-img [src]="photo.webviewPath"></ion-img>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-
-        <!-- <img src="{{imageSource}}" class="round wh-10" alt=""> -->
-        <!-- <img src="assets/images/avatar.png" alt="profile picture"> -->
-
+    <div class="tac">
+        <img class="wh-14 round" [src]="photoService.photos.length > 0 ? photoService.photos[0]?.webviewPath : 'assets/images/avatar.png'" />
     </div>
 
     <ion-list class="mt">
@@ -51,11 +41,9 @@
                     [preferWheel]="true" [showDefaultButtons]="true" size="cover"></ion-datetime>
             </ng-template>
         </ion-popover>
-        <ion-item>
-            <ion-toggle [(ngModel)]="showNotifications">Show Notifications</ion-toggle>
-        </ion-item>
     </ion-list>
     <div class="mt tac">
         <ion-button class="w-10" (click)="logout()">Logout</ion-button>
+        <ion-button class="w-10" (click)="logout()" fill="outline">Reset</ion-button>
     </div>
 </ion-content>

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
     selector: 'app-start',
@@ -13,18 +14,28 @@ import { RouterLink } from '@angular/router';
 })
 export class StartPage implements OnInit {
 
-    constructor() { }
+    constructor(private userService: UserService, private router: Router) { }
 
-    ngOnInit() { }
+    async ngOnInit() {
+        try {
+            await this.setDefaultUserIfNotExists();
+            await this.redirectToHomeIfLoggedIn();
+        } catch (error) {
+            console.log('there is a problem setting the user data on the start page');
+        }
+    }
 
-    // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    //     if (this.isLoggedIn) {
-    //         return true;
-    //     } else {
-    //         alert('Please log in')
-    //         this.router.navigate(['']);
-    //         return false;
-    //     }
-    //     }
+    private async setDefaultUserIfNotExists() {
+        if (! await this.userService.getUserFromStorage()) {
+            await this.userService.setUserInStorage();
+        }
+    }
 
+    private async redirectToHomeIfLoggedIn() {
+        if (await this.userService.isLoggedIn() && this.userService.rememberMe()) {
+            this.router.navigate(['/home']);
+        } else {
+            return;
+        }
+    }
 }
