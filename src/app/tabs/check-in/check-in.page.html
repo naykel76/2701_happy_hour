@@ -5,27 +5,21 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
     <ion-item>
         <ion-button (click)="topFiveVisited()">Top 5 Visited</ion-button>
         <ion-button (click)="showAllData()">Show All</ion-button>
     </ion-item>
-
-    <!-- height=700px -->
     <ion-card>
         <div style="min-height: 500px;">
             <canvas #myChart></canvas>
         </div>
     </ion-card>
-
     <ion-card color="dark" *ngIf="env.testing">
         <ion-card-content class="tac">
-            <div class="mb-05"> <small>For testing. Setting testing=false in the env file to hide.</small></div>
+            <div class="mb-05"> <small>For testing. Set testing=false in the env file to hide.</small></div>
             <ion-button (click)="addRandomCheckIn()">Random Check In</ion-button>
+            <ion-button (click)="clearCheckInData()">Clear Data</ion-button>
             <!-- <ion-button (click)="checkIn('12/12/2023', 305)">Check In</ion-button> -->
-            <!-- <ion-button (click)="clearCheckInData()">Clear Data</ion-button> -->
         </ion-card-content>
-
-        <!-- <ion-button>Clear CheckIns</ion-button> -->
     </ion-card>
 </ion-content>

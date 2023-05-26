@@ -45,7 +45,6 @@ export class FavouriteBeerService {
         }
 
         this.updateFavouriteBeersFromStorage();
-
     }
 
     /**
@@ -53,7 +52,6 @@ export class FavouriteBeerService {
      */
     async delete(fbid: number): Promise<void> {
         const index = this.getItemIndex(fbid);
-        // const index = this.favouriteBeers.findIndex(beer => beer.id === fbid);
         if (index !== -1) {
             this.favouriteBeers.splice(index, 1);
             this.updateFavouriteBeersFromStorage();
@@ -67,18 +65,42 @@ export class FavouriteBeerService {
         return this.favouriteBeers.findIndex(beer => beer.id === id)
     }
 
-    // private async updateTheEntireFavBStorageObject(abc): Promise<void> {
-    //     await this.storageService.set('favouriteBeers', this.favouriteBeers);
-    //     this.favouriteBeersSubject.next(this.favouriteBeers);
-    // }
-
     /**
      * Update favorite beers state and persist changes to storage.
      * Emits updated favorite beers to subscribers and updates storage.
      */
     private async updateFavouriteBeersFromStorage(): Promise<void> {
+        await this.updateCheapestVenues();
         await this.storageService.set('favouriteBeers', this.favouriteBeers);
         this.favouriteBeersSubject.next(this.favouriteBeers);
+    }
+
+
+    /**
+     *  Iterate through each favorite beer, find the cheapest venue, and update
+     *  the favouriteBeers array
+     */
+    async updateCheapestVenues(): Promise<void> {
+        this.favouriteBeers.forEach(beer => {
+            if (beer && beer.venues && beer.venues.length > 0) {
+                const cheapestVenue = beer.venues.reduce((minVenue, venue) => {
+                    if (venue.price < minVenue.price) {
+                        return venue;
+                    } else {
+                        return minVenue;
+                    }
+                });
+                beer.cheapest = {
+                    venue: cheapestVenue.name,
+                    price: cheapestVenue.price
+                };
+                // update the main array
+                const index = this.favouriteBeers.indexOf(beer);
+                if (index !== -1) {
+                    this.favouriteBeers[index] = beer;
+                }
+            }
+        });
     }
 
 }

@@ -10,27 +10,22 @@
 </ion-header>
 
 <ion-content>
-
     <ion-list #beer class="py-0">
-        <ion-item-sliding *ngFor="let favB of favBeers;">
-            <ion-item (click)="createEdit(favB, true)">
+        <ion-item-sliding *ngFor="let favBeer of favBeers;">
+            <ion-item (click)="createEdit(favBeer, true)">
                 <ion-thumbnail slot="start" class="mr-0">
-                    <img alt="{{favB.beer.name}}" src="assets/images/{{favB.beer.image}}" style="width: auto; max-height: 100%;" />
+                    <img alt="{{favBeer.beer.name}}" src="assets/images/{{favBeer.beer.image}}" style="width: auto; max-height: 100%;" />
                 </ion-thumbnail>
                 <ion-label>
-                    {{favB.beer.name}}
-                    <div class="txt-muted">Venue Cheapest Name - $8.00 <span class="txt-red">Make Dynamic</span></div>
-                    <div *ngIf="env.testing"><small>fbid: {{favB.id}}</small> &nbsp; <small>bid: {{favB.beer.id}}</small></div>
+                    {{favBeer.beer.name}}
+                    <div class="txt-muted mt-025"> <small><b>Cheapest Venue:</b> {{ favBeer.cheapest?.venue }} ${{ favBeer.cheapest?.price?.toFixed(2) }}</small></div>
                 </ion-label>
             </ion-item>
             <ion-item-options>
-                <ion-item-option (click)="delete(favB.id)" color="danger">
+                <ion-item-option (click)="delete(favBeer.id)" color="danger">
                     <ion-icon slot="icon-only" name="trash"></ion-icon>
                 </ion-item-option>
             </ion-item-options>
         </ion-item-sliding>
     </ion-list>
-
-    <nk-testing storageKey="favouriteBeers" />
-
 </ion-content>

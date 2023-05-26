@@ -47,5 +47,17 @@ export class CheckInService {
         this.updateStorageCheckIns();
     }
 
+    checkOut() {
+        this.storageService.set('isCheckedIn', false)
+    }
+
+    /**
+     * Clear the check in data but do not remove from storage
+     */
+    clearCheckInData() {
+        this.checkIns = [];
+        this.checkOut();
+        this.updateStorageCheckIns();
+    }
 
 }

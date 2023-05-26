@@ -15,6 +15,8 @@ import { CreateEditComponent } from './create-edit.component';
     imports: [IonicModule, CommonModule, FormsModule, TestingComponent, CreateEditComponent]
 })
 
+
+
 export class FavouriteBeersPage implements OnInit {
 
     env = environment;
@@ -24,6 +26,7 @@ export class FavouriteBeersPage implements OnInit {
 
     ngOnInit(): void {
         this.getFavouriteBeers();
+        // console.log(this.favBeers);
     }
 
     /**
@@ -32,9 +35,16 @@ export class FavouriteBeersPage implements OnInit {
      * latest list of favorite beers.
      */
     getFavouriteBeers(): void {
+        // this.fbs.getFavouriteBeers()
+        //     .subscribe(fb => this.favBeers = fb);
+
         this.fbs.getFavouriteBeers()
-            .subscribe(fb => this.favBeers = fb);
+            .subscribe(fb => {
+                this.favBeers = fb;
+                console.log(this.favBeers); // Check if the data is up-to-date
+            });
     }
+
 
     /**
      * Open modal to create, edit and display the selected favourite
@@ -67,5 +77,6 @@ export class FavouriteBeersPage implements OnInit {
     delete(fbid: number): void {
         this.fbs.delete(fbid);
     }
+
 }
 

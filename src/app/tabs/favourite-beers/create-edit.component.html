@@ -23,7 +23,7 @@
             <ion-item-sliding *ngFor="let venue of editingItem.venues">
                 <ion-item>
                     <div class="w-24">{{venue.name}}</div>
-                    <ion-input value="${{venue.price}}" type="tel" min="0" max="10000" class="fg0 tar"></ion-input>
+                    <ion-input value="${{venue.price.toFixed(2)}}" type="tel" min="0" max="10000" class="fg0 tar"></ion-input>
                 </ion-item>
                 <ion-item-options side="end">
                     <ion-item-option (click)="removeVenue(venue.id)" color="danger">

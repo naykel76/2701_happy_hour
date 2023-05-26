@@ -3,9 +3,8 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import Chart from 'chart.js/auto';
 import { FormsModule } from '@angular/forms';
-import { CHECK_IN_LOG, VENUES } from 'src/app/data';
+import { VENUES } from 'src/app/data';
 import { CheckInService } from 'src/app/services/check-in.service';
-import { log } from 'console';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -115,16 +114,13 @@ export class CheckInPage implements OnInit {
 
     checkIn(date: string, venue_id: number) {
         this.cis.addCheckIn({ date: date, venue_id: venue_id });
-        console.log();
-
     }
 
     clearCheckInData() {
-        // this.cis.clearCheckInData();
+        this.cis.clearCheckInData();
         // this.subscribeToCheckIn();
-        console.log(this.checkInData);
-
     }
+
     /**
      * ----------------------------------------------------------
      * Helpers and testing

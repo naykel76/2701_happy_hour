@@ -19,6 +19,10 @@ export interface FavouriteBeer {
         name: string
         price: number,
     }[];
+    cheapest?: {
+        venue: string,
+        price: number
+    }
 }
 
 export interface Venue {
