@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CHECK_IN_LOG, VENUES } from 'src/app/data';
 import { CheckInService } from 'src/app/services/check-in.service';
 import { log } from 'console';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-check-in',
@@ -16,8 +17,9 @@ import { log } from 'console';
 export class CheckInPage implements OnInit {
 
     @ViewChild('myChart', { static: true }) canvas: any;
+    checkInData: Array<any>;
+    env = environment;
     chart: any;
-    checkInData: Array<any>; // all stored data
 
     constructor(private cis: CheckInService) { }
 
@@ -96,7 +98,7 @@ export class CheckInPage implements OnInit {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: '# of Votes',
+                    label: '# Check Ins',
                     data: values,
                     borderWidth: 1
                 }]
@@ -111,4 +113,37 @@ export class CheckInPage implements OnInit {
         });
     }
 
+    checkIn(date: string, venue_id: number) {
+        this.cis.addCheckIn({ date: date, venue_id: venue_id });
+        console.log();
+
+    }
+
+    clearCheckInData() {
+        // this.cis.clearCheckInData();
+        // this.subscribeToCheckIn();
+        console.log(this.checkInData);
+
+    }
+    /**
+     * ----------------------------------------------------------
+     * Helpers and testing
+     * ----------------------------------------------------------
+     */
+
+    addRandomCheckIn() {
+        this.cis.addCheckIn({ date: this.getRandomDateWithinLastYear(), venue_id: this.getRandomNumber() });
+    }
+
+    getRandomNumber(min = 301, max = 308) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    getRandomDateWithinLastYear() {
+        const today = new Date();
+        const pastDate = new Date(today.getFullYear() - 1, today.getMonth(), today.getDate());
+        const randomTimestamp = Math.floor(Math.random() * (today.getTime() - pastDate.getTime())) + pastDate.getTime();
+        const randomDate = new Date(randomTimestamp);
+        return randomDate.toISOString().split('T')[0];
+    }
 }

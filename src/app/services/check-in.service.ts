@@ -7,8 +7,8 @@ import { CHECK_IN_LOG } from '../data';
     providedIn: 'root'
 })
 export class CheckInService {
-    private checkIns: any[] = [];
     private checkInsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+    private checkIns: any[] = [];
 
     constructor(private storageService: StorageService) {
         this.loadCheckInDataFromStorage();
@@ -38,15 +38,14 @@ export class CheckInService {
         this.checkInsSubject.next(this.checkIns);
     }
 
-    // addCheckIn(checkIn: any) {
-    //     this.checkIns.push(checkIn);
-    //     this.updateCheckIns();
-    // }
-
-    // private updateCheckIns() {
-    //     this.checkInsSubject.next(this.checkIns);
-    //     this.storageService.set('checkIns', this.checkIns);
-    // }
+    /**
+     * add check to log and set check in status = true
+     */
+    addCheckIn(checkIn: any) {
+        this.checkIns.push(checkIn);
+        this.storageService.set('isCheckedIn', true)
+        this.updateStorageCheckIns();
+    }
 
 
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { CheckInService } from 'src/app/services/check-in.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -11,9 +12,12 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HomePage {
 
-    constructor(private userService: UserService) {
-        // this.userService.displayEditUserProfile();
-    }
+    constructor(private userService: UserService, private cis:CheckInService) { }
+
+    // select venue
+    // check in
+    // check out
+
 
     /**
      * Open the user profile modal
