@@ -7,6 +7,7 @@ import { CHECK_IN_LOG } from '../data';
     providedIn: 'root'
 })
 export class CheckInService {
+
     private checkInsSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
     private checkIns: any[] = [];
 
@@ -57,6 +58,15 @@ export class CheckInService {
     clearCheckInData() {
         this.checkIns = [];
         this.checkOut();
+        this.updateStorageCheckIns();
+    }
+
+    /**
+     * Clear the check in data but do not remove from storage
+     */
+    restoreOriginalData() {
+        this.storageService.remove('checkIns');
+        this.loadCheckInDataFromStorage();
         this.updateStorageCheckIns();
     }
 

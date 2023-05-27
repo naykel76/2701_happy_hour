@@ -2,10 +2,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import Chart from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { FormsModule } from '@angular/forms';
 import { VENUES } from 'src/app/data';
 import { CheckInService } from 'src/app/services/check-in.service';
 import { environment } from 'src/environments/environment';
+import { log } from 'console';
 
 @Component({
     selector: 'app-check-in',
@@ -17,6 +19,7 @@ export class CheckInPage implements OnInit {
 
     @ViewChild('myChart', { static: true }) canvas: any;
     checkInData: Array<any>;
+    checkInDataFiltered: Array<any>;
     env = environment;
     chart: any;
 
@@ -41,19 +44,21 @@ export class CheckInPage implements OnInit {
      * STRUCTURE: {date: '22-05-04', venue_id: 306, name: 'Sunnybank Hotel'}
      */
     prepareDataForChart(data: any[]) {
+
         this.checkInData = data.map((item) => {
             const venue = VENUES.find((venue) => venue.id === item.venue_id);
             const name = venue ? venue.name : 'Unknown Venue';
             return { ...item, name };
         });
-        this.showAllData();
+
+        this.showData(365);
     }
 
     /**
      * display the chart with all data
      */
-    showAllData(): void {
-        let data = this.totalCheckInsByVenue(this.checkInData);
+    showData(days: number): void {
+        let data = this.totalCheckInsByVenue(this.filterByNumDays(this.checkInData, days));
         this.createChart(data);
     }
 
@@ -85,6 +90,29 @@ export class CheckInPage implements OnInit {
         }, {});
     }
 
+    /**
+    * filter data by number of days
+    */
+    filterByNumDays(data: any[], days: number): any[] {
+
+        const currentDate = new Date();
+
+        // Calculate the start date (n days ago)
+        const startDate = new Date();
+        startDate.setDate(currentDate.getDate() - days);
+
+        // Define the end date (current date)
+        const endDate = currentDate;
+
+        // Filter the array based on the dates
+        const filteredDates = data.filter(event => {
+            const eventDate = new Date(event.date);
+            return eventDate >= startDate && eventDate <= endDate;
+        });
+
+        return filteredDates;
+    }
+
     createChart(data: object) {
 
         const labels = Object.keys(data);
@@ -102,13 +130,20 @@ export class CheckInPage implements OnInit {
                     borderWidth: 1
                 }]
             },
+            plugins: [ChartDataLabels],
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
                 layout: {
                     padding: 20
+                },
+                plugins: {
+                    datalabels: {
+                        color: 'white'
+                    }
                 }
-            }
+            },
+
         });
     }
 
@@ -118,7 +153,10 @@ export class CheckInPage implements OnInit {
 
     clearCheckInData() {
         this.cis.clearCheckInData();
-        // this.subscribeToCheckIn();
+    }
+
+    restoreOriginalData() {
+        this.cis.restoreOriginalData();
     }
 
     /**

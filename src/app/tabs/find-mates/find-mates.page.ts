@@ -44,9 +44,11 @@ export class FindMatesPage {
         this.addMarkers();
     }
 
-    async addMarkers() {
 
-        // map stored venues to markers
+    /**
+     * Map venue data to markers
+     */
+    async addMarkers() {
         const markers: Marker[] = VENUES.map((venue: Venue) => {
             return {
                 title: venue.name,
@@ -54,15 +56,13 @@ export class FindMatesPage {
                     lat: venue.coordinates.lat,
                     lng: venue.coordinates.lng
                 },
-                snippet: 'some snippet' // You can customize the snippet if needed
+                // NK::TD
+                snippet: venue.address // You can customize the snippet if needed
             };
         });
 
         await this.map.addMarkers(markers);
 
     }
-
-
-
 
 }
