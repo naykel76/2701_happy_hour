@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { AlertController, IonicModule, ModalController } from '@ionic/angular';
 import { FavouriteBeerService } from 'src/app/services/favourite-beer.service';
 import { FavouriteBeer } from 'src/app/definitions';
 import { environment } from 'src/environments/environment';
@@ -15,14 +15,12 @@ import { CreateEditComponent } from './create-edit.component';
     imports: [IonicModule, CommonModule, FormsModule, TestingComponent, CreateEditComponent]
 })
 
-
-
 export class FavouriteBeersPage implements OnInit {
 
     env = environment;
     favBeers: FavouriteBeer[];
 
-    constructor(private fbs: FavouriteBeerService, private modal: ModalController) { }
+    constructor(private fbs: FavouriteBeerService, private modal: ModalController, private alert: AlertController) { }
 
     ngOnInit(): void {
         this.getFavouriteBeers();
@@ -77,6 +75,35 @@ export class FavouriteBeersPage implements OnInit {
     delete(fbid: number): void {
         this.fbs.delete(fbid);
     }
+
+    /**
+     * Open the confirmation alert
+     */
+    async confirmDelete(fbid: number): Promise<any> {
+        const alert = await this.alert.create({
+            header: 'Confirm Delete',
+            message: 'Are you sure you want to delete this item?',
+            buttons: [
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: () => {
+                        console.log('Delete canceled');
+                    }
+                },
+                {
+                    text: 'Confirm',
+                    handler: () => {
+                        this.delete(fbid)
+                    }
+                }
+            ]
+        });
+
+        await alert.present();
+    }
+
 
 }
 
