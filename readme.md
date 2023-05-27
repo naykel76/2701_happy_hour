@@ -37,3 +37,9 @@ npm install @capacitor/geolocation
 npm install @capacitor/google-maps
 npx cap sync
 ```
+
+
+> capacitor open android
+[capacitor] [error] Unable to launch Android Studio. Is it installed?
+[capacitor]         Attempted to open Android Studio at: /usr/local/android-studio/bin/studio.sh
+[capacitor]         You can configure this with the CAPACITOR_ANDROID_STUDIO_PATH environment variable.
