@@ -3,6 +3,7 @@ import { StorageService } from './storage.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CHECK_IN_LOG, VENUES } from '../data';
 import { Venue } from '../definitions';
+import { helpers } from '../helpers';
 
 @Injectable({
     providedIn: 'root'
@@ -43,10 +44,10 @@ export class CheckInService {
     /**
      * add check to log and set check in status = true
      */
-    addCheckIn(checkIn: any): void {
+    async addCheckIn(checkIn: any): Promise<void> {
         this.checkIns.push(checkIn);
-        this.storageService.set('checkInData', { status: true, venue_id: checkIn.venue_id })
-        this.updateStorageCheckIns();
+        await this.storageService.set('checkInData', { status: true, venue_id: checkIn.venue_id })
+        await this.updateStorageCheckIns();
     }
 
     /**
@@ -59,8 +60,16 @@ export class CheckInService {
     /**
      *
      */
-    async getCheckInData(): Promise<{ status: boolean, venue_id: number }> | null {
-        return await this.storageService.get('checkInData')
+    async getCheckInData(): Promise<{ status: boolean, venue_id: number, venue_name: string }> | null {
+        const checkInData = await this.storageService.get('checkInData');
+        if (checkInData) {
+            const { status, venue_id } = checkInData;
+            const venue = VENUES.find((v: Venue) => v.id === venue_id);
+            const venue_name = venue ? venue.name : '';
+            return { status, venue_id, venue_name };
+        }
+        await this.updateStorageCheckIns();
+        return null;
     }
 
     /**
@@ -95,6 +104,16 @@ export class CheckInService {
         });
 
         return total;
+    }
+
+    /**
+     * add a random check in for testing
+     */
+    addRandomCheckIn(): void {
+        this.addCheckIn({
+            date: helpers.getRandomDateWithinLastYear(),
+            venue_id: helpers.getRandomNumber(301, 308)
+        });
     }
 
 }

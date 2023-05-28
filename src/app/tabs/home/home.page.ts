@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { VENUES } from 'src/app/data';
-import { Venue } from 'src/app/definitions';
 import { CheckInService } from 'src/app/services/check-in.service';
 import { UserService } from 'src/app/services/user.service';
 import { format, parseISO } from 'date-fns';
 import { CommonModule } from '@angular/common';
+import { helpers } from 'src/app/helpers';
 
 @Component({
     selector: 'app-home',
@@ -18,7 +18,8 @@ export class HomePage {
 
     totalCheckedIn: number = 0;
     isCheckedIn: boolean | null;
-    // location: boolean;
+    checkedInVenue: string | '';
+    selectableVenues = VENUES;
 
     constructor(private userService: UserService, private cis: CheckInService) { }
 
@@ -30,22 +31,19 @@ export class HomePage {
     async setCheckInStatus() {
         let checkInData = await this.cis.getCheckInData();
         this.isCheckedIn = checkInData !== null ? checkInData.status : false;
+        this.checkedInVenue = checkInData !== null ? checkInData.venue_name : '';
+        console.log(checkInData);
     }
 
-    /**
-     * Check into venue and update log
-     */
-    checkIn(venue_id: number) {
-        const currentDate = new Date();
-        const formattedDate = format(currentDate, 'yyyy-MM-dd');
-        this.cis.addCheckIn({ date: formattedDate, venue_id: venue_id });
-    }
+
+
 
     /**
      * Check out and clear storage
      */
-    checkOut(): void {
+    async checkOut() {
         this.cis.checkOut();
+        await this.setCheckInStatus()
     }
 
     /**
@@ -61,4 +59,28 @@ export class HomePage {
     async displayEditUserProfile() {
         await this.userService.displayEditUserProfile();
     }
+
+    /**
+     *
+     */
+    selectVenue(event: any) {
+        const selectedVenue = event.target.value;
+        this.checkedInVenue = selectedVenue.name;
+
+        this.checkIn(selectedVenue.id);
+    }
+
+
+    /**
+     * Check into venue with current date and update log
+     */
+    async checkIn(venue_id: number) {
+        await this.cis.addCheckIn({ date: helpers.getCurrentDate(), venue_id: venue_id });
+        await this.setCheckInStatus();
+    }
+
+    addRandomCheckIn() {
+        this.cis.addRandomCheckIn();
+    }
+
 }

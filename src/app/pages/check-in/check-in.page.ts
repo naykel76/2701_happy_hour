@@ -44,6 +44,8 @@ export class CheckInPage implements OnInit {
      */
     prepareDataForChart(data: any[]) {
 
+        console.log(data);
+
         this.checkInData = data.map((item) => {
             const venue = VENUES.find((venue) => venue.id === item.venue_id);
             const name = venue ? venue.name : 'Unknown Venue';
@@ -165,18 +167,9 @@ export class CheckInPage implements OnInit {
      */
 
     addRandomCheckIn() {
-        this.cis.addCheckIn({ date: this.getRandomDateWithinLastYear(), venue_id: this.getRandomNumber() });
+        this.cis.addRandomCheckIn();
     }
 
-    getRandomNumber(min = 301, max = 308) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
 
-    getRandomDateWithinLastYear() {
-        const today = new Date();
-        const pastDate = new Date(today.getFullYear() - 1, today.getMonth(), today.getDate());
-        const randomTimestamp = Math.floor(Math.random() * (today.getTime() - pastDate.getTime())) + pastDate.getTime();
-        const randomDate = new Date(randomTimestamp);
-        return randomDate.toISOString().split('T')[0];
-    }
+
 }
