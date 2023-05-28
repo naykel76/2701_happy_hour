@@ -30,6 +30,7 @@ export interface Venue {
     name: string;
     address: string;
     coordinates: Coordinates;
+    checked_in?: number;
 }
 
 export interface User {

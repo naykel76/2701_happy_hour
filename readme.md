@@ -38,8 +38,28 @@ npm install @capacitor/google-maps
 npx cap sync
 ```
 
+  async ngOnInit() {
+        this.setTotalCheckedIn();
+        this.checkInData = this.setCheckInStatus();
+        await this.checkInData;
+    }
 
-> capacitor open android
-[capacitor] [error] Unable to launch Android Studio. Is it installed?
-[capacitor]         Attempted to open Android Studio at: /usr/local/android-studio/bin/studio.sh
-[capacitor]         You can configure this with the CAPACITOR_ANDROID_STUDIO_PATH environment variable.
+
+    // how can I make sure this is available before using the checkin or checkout functions?
+    async setCheckInStatus(): Promise<{ status: boolean, venue_id: number }> {
+        const data = await this.cis.getCheckInData();
+        this.checkInData = Promise.resolve(data);
+        console.log(data);
+        return data;
+    }
+
+    /**
+     * Check into venue and update log
+     */
+    async checkIn(venue_id: number) {
+        const currentDate = new Date();
+        const formattedDate = format(currentDate, 'yyyy-MM-dd');
+        this.cis.addCheckIn({ date: formattedDate, venue_id: venue_id });
+        this.isCheckedIn = true;
+    //    await  this.setCheckInStatus();
+    }

@@ -6,6 +6,7 @@ import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { environment } from 'src/environments/environment';
 import { VENUES } from 'src/app/data';
 import { Venue } from 'src/app/definitions';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-find-mates',
@@ -13,7 +14,7 @@ import { Venue } from 'src/app/definitions';
     standalone: true,
     styles: [`
         ion-content { --background: transparent; }
-        capacitor-google-map { display: inline-block; width: 100%; height: 100%; }`
+        capacitor-google-map { display: inline-block; width: 100%; height: 100%;}`
     ],
     imports: [IonicModule, CommonModule, FormsModule],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -22,6 +23,9 @@ export class FindMatesPage {
 
     @ViewChild('map') mapRef: ElementRef;
     map: GoogleMap;
+    checkedIn: number = 0;
+
+    constructor(private router: Router) { }
 
     ionViewDidEnter() {
         this.createMap()
@@ -32,30 +36,37 @@ export class FindMatesPage {
             id: 'find-mates-map',
             apiKey: environment.mapsKey,
             element: this.mapRef.nativeElement,
-            forceCreate: true, // ? not sure if required
             config: {
                 center: {
                     lat: -27.595725912524248,
                     lng: 153.06536734191715
                 },
                 zoom: 12,
+                disableDefaultUI: true
             },
         });
         this.addMarkers();
     }
 
-
     /**
      * Map venue data to markers
      */
     async addMarkers() {
+
+        const image = "/assets/images/pin.png";
+
         const markers: Marker[] = VENUES.map((venue: Venue) => {
+
+            let title = venue.checked_in > 0
+                ? venue.name + ' - Mates Checked In: ' + venue.checked_in
+                : venue.name  + ' - Mates Checked In: 0'
             return {
-                title: venue.name,
+                title: title,
                 coordinate: {
                     lat: venue.coordinates.lat,
                     lng: venue.coordinates.lng
                 },
+                iconUrl: image,
                 // NK::TD
                 snippet: venue.address // You can customize the snippet if needed
             };
@@ -63,6 +74,14 @@ export class FindMatesPage {
 
         await this.map.addMarkers(markers);
 
+    }
+
+
+    /**
+     * open the chart to display check in stats
+     */
+    stats() {
+        this.router.navigateByUrl('/check-in');
     }
 
 }

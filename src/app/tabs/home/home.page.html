@@ -1,10 +1,25 @@
 <ion-content [fullscreen]="true">
-    <!-- <div (click)="checkIn(1)" class="tac my-2">
-        <svg class="icon wh-5 blue round pxy-05 cursor-pointer">
-            <use xlink:href="/assets/svg/ui-sprite.svg#location-pin"></use>
-        </svg>
-        <h2>Check In</h2>
-    </div> -->
+    <div class="tac my-2">
+        <ng-container *ngIf="! isCheckedIn; else checkedInSection">
+            <!-- NK::TD add dynamic venue -->
+            <div (click)="checkIn(305)">
+                <svg class="icon wh-5 green round pxy-05 cursor-pointer" style="fill: white;">
+                    <use xlink:href="/assets/svg/ui-sprite.svg#location-pin"></use>
+                </svg>
+                <h2>Check In</h2>
+            </div>
+        </ng-container>
+        <ng-template #checkedInSection>
+            <div (click)="checkOut()">
+                <svg class="icon wh-5 red round pxy-05 cursor-pointer" style="fill: white;">
+                    <use xlink:href="/assets/svg/ui-sprite.svg#location-pin"></use>
+                </svg>
+                <!-- NK::TD -->
+                <p>Currently checked in at: ...</p>
+                <h2>Check Out</h2>
+            </div>
+        </ng-template>
+    </div>
     <ion-card [routerLink]="['/find-mates']">
         <div class="flex va-c pxy-1">
             <svg class="icon wh-4 mr-2">
@@ -12,7 +27,7 @@
             </svg>
             <div>
                 <h4 class="my-0">Find Mates</h4>
-                <p class="my-0">You have 18 mates checked in</p>
+                <p class="my-0">You have {{totalCheckedIn}} mates checked in</p>
             </div>
         </div>
     </ion-card>

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { StorageService } from './storage.service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CHECK_IN_LOG } from '../data';
+import { CHECK_IN_LOG, VENUES } from '../data';
+import { Venue } from '../definitions';
 
 @Injectable({
     providedIn: 'root'
@@ -42,14 +43,24 @@ export class CheckInService {
     /**
      * add check to log and set check in status = true
      */
-    addCheckIn(checkIn: any) {
+    addCheckIn(checkIn: any): void {
         this.checkIns.push(checkIn);
-        this.storageService.set('isCheckedIn', true)
+        this.storageService.set('checkInData', { status: true, venue_id: checkIn.venue_id })
         this.updateStorageCheckIns();
     }
 
-    checkOut() {
-        this.storageService.set('isCheckedIn', false)
+    /**
+     * clear check in data and checkout
+     */
+    async checkOut(): Promise<void> {
+        await this.storageService.remove('checkInData');
+    }
+
+    /**
+     *
+     */
+    async getCheckInData(): Promise<{ status: boolean, venue_id: number }> | null {
+        return await this.storageService.get('checkInData')
     }
 
     /**
@@ -68,6 +79,22 @@ export class CheckInService {
         this.storageService.remove('checkIns');
         this.loadCheckInDataFromStorage();
         this.updateStorageCheckIns();
+    }
+
+    /**
+     *
+     * Calculate the total number of people checked in
+     */
+    getTotalCheckedIn(): number | null {
+        let total = 0;
+
+        VENUES.forEach((venue: Venue) => {
+            if (venue.checked_in) {
+                total += venue.checked_in;
+            }
+        });
+
+        return total;
     }
 
 }

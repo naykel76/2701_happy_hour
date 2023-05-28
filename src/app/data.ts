@@ -15,23 +15,25 @@ export const BEERS: Beer[] = [
     { id: 712, name: 'XXXX Gold', image: 'xxxx-gold.jpg' }
 ];
 
-
 export const VENUES: Venue[] = [
     {
         id: 301,
         name: 'Runcorn Tavern',
+        checked_in: 3,
         address: '124 Gowan Rd, Sunnybank Hills QLD 4109',
         coordinates: { lat: -27.595725912524248, lng: 153.06536734191715 },
     },
     {
         id: 302,
         name: 'Souths Sports Club',
+        checked_in: 4,
         address: '174 Mortimer Rd, Acacia Ridge QLD 4110',
         coordinates: { lat: -27.576548, lng: 153.0161967 }
     },
     {
         id: 303,
         name: 'Rocklea Hotel',
+        checked_in: 14,
         address: '1337 Ipswich Rd, Rocklea QLD 4106',
         coordinates: { lat: -27.5431423, lng: 153.0107211 }
     },
@@ -127,31 +129,9 @@ export const FAVOURITE_BEERS: FavouriteBeer[] = [
     }
 ]
 
-export const CHECK_IN_LOG_SM = [{ "date": "11/11/2022", "venue_id": 307 }, { "date": "11/11/2022", "venue_id": 307 }]
+// export const CHECK_IN_LOG = [{ "date": "15/11/2022", "venue_id": 307 }, { "date": "11/11/2022", "venue_id": 308 }]
+export const CHECK_IN_LOG = [{ "date": "2023-05-25", "venue_id": 307 }, { "date": "2023-05-01", "venue_id": 308 }, { "date": "2022-12-30", "venue_id": 308 }];
 
-export const CHECK_IN_LOG = [{ "date": "11/11/2022", "venue_id": 307 }, { "date": "11/11/2022", "venue_id": 307 }, { "date": "11/11/2022", "venue_id": 307 }, { "date": "11/11/2022", "venue_id": 307 }, { "date": "11/11/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "11/30/2022", "venue_id": 304 }, { "date": "11/30/2022", "venue_id": 304 }, { "date": "11/30/2022", "venue_id": 304 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "12/07/2022", "venue_id": 306 }, { "date": "12/07/2022", "venue_id": 306 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "05/23/2023", "venue_id": 303 },
-{ "date": "05/24/2023", "venue_id": 303 },
-{ "date": "05/25/2023", "venue_id": 303 },
-{ "date": "05/26/2023", "venue_id": 306 },
-{ "date": "05/27/2023", "venue_id": 307 },
-// Add 20 entries within May
-{ "date": "05/01/2023", "venue_id": 301 },
-{ "date": "05/02/2023", "venue_id": 302 },
-{ "date": "05/03/2023", "venue_id": 303 },
-{ "date": "05/04/2023", "venue_id": 304 },
-{ "date": "05/05/2023", "venue_id": 305 },
-{ "date": "05/06/2023", "venue_id": 306 },
-{ "date": "05/07/2023", "venue_id": 307 },
-{ "date": "05/08/2023", "venue_id": 308 },
-{ "date": "05/09/2023", "venue_id": 301 },
-{ "date": "05/10/2023", "venue_id": 302 },
-{ "date": "05/11/2023", "venue_id": 303 },
-{ "date": "05/12/2023", "venue_id": 304 },
-{ "date": "05/13/2023", "venue_id": 305 },
-{ "date": "05/14/2023", "venue_id": 306 },
-{ "date": "05/15/2023", "venue_id": 307 },
-{ "date": "05/16/2023", "venue_id": 308 },
-{ "date": "05/17/2023", "venue_id": 301 },
-{ "date": "05/18/2023", "venue_id": 302 },
-{ "date": "05/19/2023", "venue_id": 303 },
-{ "date": "05/20/2023", "venue_id": 304 }]
+export const CHECK_IN_LOG_ = [{ "date": "11/11/2022", "venue_id": 307 }, { "date": "11/11/2022", "venue_id": 307 }, { "date": "11/11/2022", "venue_id": 307 }, { "date": "11/11/2022", "venue_id": 307 }, { "date": "11/11/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "12/26/2022", "venue_id": 307 }, { "date": "11/30/2022", "venue_id": 304 }, { "date": "11/30/2022", "venue_id": 304 }, { "date": "11/30/2022", "venue_id": 304 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "08/14/2022", "venue_id": 303 }, { "date": "12/07/2022", "venue_id": 306 }, { "date": "12/07/2022", "venue_id": 306 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "06/14/2022", "venue_id": 303 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "05/29/2022", "venue_id": 302 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "10/30/2022", "venue_id": 301 }, { "date": "05/23/2023", "venue_id": 303 }, { "date": "05/24/2023", "venue_id": 303 }, { "date": "05/25/2023", "venue_id": 303 }, { "date": "05/26/2023", "venue_id": 306 }, { "date": "05/27/2023", "venue_id": 307 }, { "date": "05/01/2023", "venue_id": 301 }, { "date": "05/02/2023", "venue_id": 302 }, { "date": "05/03/2023", "venue_id": 303 }, { "date": "05/04/2023", "venue_id": 304 }, { "date": "05/05/2023", "venue_id": 305 }, { "date": "05/06/2023", "venue_id": 306 }, { "date": "05/07/2023", "venue_id": 307 }, { "date": "05/08/2023", "venue_id": 308 }, { "date": "05/09/2023", "venue_id": 301 }, { "date": "05/10/2023", "venue_id": 302 }, { "date": "05/11/2023", "venue_id": 303 }, { "date": "05/12/2023", "venue_id": 304 }, { "date": "05/13/2023", "venue_id": 305 }, { "date": "05/14/2023", "venue_id": 306 }, { "date": "05/15/2023", "venue_id": 307 }, { "date": "05/16/2023", "venue_id": 308 }, { "date": "05/17/2023", "venue_id": 301 }, { "date": "05/18/2023", "venue_id": 302 }, { "date": "05/19/2023", "venue_id": 303 }, { "date": "05/20/2023", "venue_id": 304 }]
+
+

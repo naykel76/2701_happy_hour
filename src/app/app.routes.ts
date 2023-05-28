@@ -3,7 +3,6 @@ import { TabsPage } from './tabs/tabs.page';
 import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
-
     {
         path: '',
         redirectTo: '/start',
@@ -18,6 +17,10 @@ export const routes: Routes = [
         loadComponent: () => import('./pages/start/start.page').then(m => m.StartPage)
     },
     {
+        path: 'check-in',
+        loadComponent: () => import('./pages/check-in/check-in.page').then(m => m.CheckInPage)
+    },
+    {
         path: '',
         component: TabsPage,
         canActivate: [AuthGuard],
@@ -27,10 +30,7 @@ export const routes: Routes = [
                 loadComponent: () =>
                     import('./tabs/home/home.page').then((m) => m.HomePage,),
             },
-            {
-                path: 'check-in',
-                loadComponent: () => import('./tabs/check-in/check-in.page').then(m => m.CheckInPage)
-            },
+
             {
                 path: 'find-mates',
                 loadComponent: () => import('./tabs/find-mates/find-mates.page').then(m => m.FindMatesPage)

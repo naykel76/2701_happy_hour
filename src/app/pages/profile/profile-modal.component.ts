@@ -6,7 +6,6 @@ import { User } from 'src/app/definitions';
 import { UserService } from 'src/app/services/user.service';
 import { format, parseISO } from 'date-fns';
 import { PhotoService } from 'src/app/services/photo.service';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-profile-modal',

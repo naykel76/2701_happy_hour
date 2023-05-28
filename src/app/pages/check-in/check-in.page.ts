@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 import { VENUES } from 'src/app/data';
 import { CheckInService } from 'src/app/services/check-in.service';
 import { environment } from 'src/environments/environment';
-import { log } from 'console';
 
 @Component({
     selector: 'app-check-in',
