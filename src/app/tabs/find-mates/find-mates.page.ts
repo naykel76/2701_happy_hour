@@ -1,12 +1,13 @@
 import { Component, ViewChild, CUSTOM_ELEMENTS_SCHEMA, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, PopoverController } from '@ionic/angular';
 import { GoogleMap, Marker } from '@capacitor/google-maps';
 import { environment } from 'src/environments/environment';
 import { VENUES } from 'src/app/data';
 import { Venue } from 'src/app/definitions';
 import { Router } from '@angular/router';
+import { PopoverComponent } from 'src/app/components/popover.component';
 
 @Component({
     selector: 'app-find-mates',
@@ -25,7 +26,7 @@ export class FindMatesPage {
     map: GoogleMap;
     checkedIn: number = 0;
 
-    constructor(private router: Router) { }
+    constructor(private router: Router, private popOver: PopoverController) { }
 
     ionViewDidEnter() {
         this.createMap()
@@ -45,7 +46,11 @@ export class FindMatesPage {
                 disableDefaultUI: true
             },
         });
+
         this.addMarkers();
+
+        this.map.setOnMarkerClickListener((marker) => this.onMarkerClick(marker));
+
     }
 
     /**
@@ -67,13 +72,25 @@ export class FindMatesPage {
                     lng: venue.coordinates.lng
                 },
                 iconUrl: image,
-                // NK::TD
                 snippet: venue.address // You can customize the snippet if needed
             };
         });
 
         await this.map.addMarkers(markers);
 
+    }
+
+    async onMarkerClick(marker: any) {
+        const popover = await this.popOver.create({
+            component: PopoverComponent,
+            componentProps: {
+                data: marker,
+            },
+            event: marker,
+            translucent: true,
+        });
+
+        await popover.present();
     }
 
 
