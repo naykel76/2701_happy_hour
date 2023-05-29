@@ -59,12 +59,10 @@ export class ProfileModalComponent implements OnInit {
         this.user.birthday = format(parseISO(value), 'dd/MM/yyyy');
     }
 
-
     takeProfilePhoto() {
         this.photoService.takePhoto();
     }
 
-    // NK::TD move to user service
     logout() {
         this.userService.logOut();
         this.modal.dismiss(null, 'cancel');

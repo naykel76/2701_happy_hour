@@ -58,7 +58,7 @@ export class CheckInService {
     }
 
     /**
-     *
+     * get the data for the current check in
      */
     async getCheckInData(): Promise<{ status: boolean, venue_id: number, venue_name: string }> | null {
         const checkInData = await this.storageService.get('checkInData');

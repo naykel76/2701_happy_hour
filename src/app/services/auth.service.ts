@@ -31,8 +31,8 @@ export class AuthService {
     }
 
     /**
-  * get super secure authentication credentials from storage
-  */
+     * get super secure authentication credentials from storage
+     */
     async getCredentials(): Promise<{ email: string, password: string }> {
         const user = await this.storageService.get('user');
         return { email: user?.email, password: user?.password };

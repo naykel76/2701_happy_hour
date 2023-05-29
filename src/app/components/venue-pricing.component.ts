@@ -14,7 +14,6 @@ import { Venue } from '../definitions';
 })
 export class VenuePricingComponent {
 
-    // NK::TD if venue already exists, then exclude
     selectableVenues = VENUES;
     isOpen: boolean = false;
     editing: boolean = false;

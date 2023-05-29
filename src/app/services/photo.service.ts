@@ -38,7 +38,6 @@ export class PhotoService {
     }
 
 
-    // NK::TD need to put in storage? or in filesystem?
     private async savePicture(photo: Photo) {
         // Convert photo to base64 format, required by Filesystem API to save
         const base64Data = await this.readAsBase64(photo);
